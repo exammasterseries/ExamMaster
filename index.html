@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExamMaster — Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#06060a;color:#f0f0f8;font-family:'Inter',sans-serif;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+:root{--gold:#f5c518;--gold2:#e8a000;--navy:#1a3a6b;--red:#e8213a;--black:#06060a;--dark:#0d0d14;--card:#13131e;--border:#252535;--muted:#7070a0;--white:#f0f0f8;}
+nav{background:rgba(6,6,10,.96);border-bottom:1px solid rgba(245,197,24,.18);padding:0 24px;position:sticky;top:0;z-index:200;backdrop-filter:blur(14px);}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:62px;}
+.nav-brand{display:flex;align-items:center;gap:11px;}
+.nav-logo-wrap{width:42px;height:42px;border-radius:9px;overflow:hidden;border:2px solid rgba(245,197,24,.3);background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-logo-wrap img{width:38px;height:38px;object-fit:contain;}
+.brand-name{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:2px;line-height:1;}
+.brand-name span{color:var(--gold);}
+.brand-sub{font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
+.nav-links{display:flex;gap:4px;}
+.nav-links a{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:1px;color:var(--muted);padding:7px 13px;border-radius:7px;transition:all .2s;text-transform:uppercase;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(255,255,255,.07);}
+.nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Oswald',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;padding:9px 20px;border-radius:8px;transition:all .2s;text-transform:uppercase;display:inline-block;cursor:pointer;border:none;}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(245,197,24,.45);}
+.hero{position:relative;overflow:hidden;padding:90px 24px 70px;text-align:center;min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(rgba(6,6,10,.72),rgba(6,6,10,.82)),url('https://i.postimg.cc/bvScYVHH/download-id-1Ap8y-Bz9TZRn2Qg-F6gchl8fp03Usy557P-export-view.jpg') center/cover no-repeat;}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(245,197,24,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,197,24,.04) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,black,transparent);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,33,58,.18);border:1px solid rgba(232,33,58,.35);color:var(--red);font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:3px;padding:7px 18px;border-radius:99px;margin-bottom:28px;position:relative;z-index:1;animation:bp 2s ease-in-out infinite;}
+@keyframes bp{0%,100%{box-shadow:0 0 0 0 rgba(232,33,58,.35);}50%{box-shadow:0 0 0 10px rgba(232,33,58,0);}}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(54px,11vw,112px);line-height:.92;letter-spacing:4px;margin-bottom:18px;position:relative;z-index:1;}
+.hero h1 .w1{display:block;color:var(--white);}
+.hero h1 .w2{display:block;background:linear-gradient(135deg,var(--gold) 0%,#fff176 50%,var(--gold2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 40px rgba(245,197,24,.5));}
+.hero h1 .w3{display:block;color:var(--white);}
+.hero-sub{font-family:'Oswald',sans-serif;font-size:clamp(13px,2.5vw,17px);color:rgba(240,240,248,.65);letter-spacing:3px;text-transform:uppercase;margin-bottom:36px;max-width:600px;position:relative;z-index:1;}
+.hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:40px;position:relative;z-index:1;}
+.hpill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:99px;padding:9px 17px;font-size:13px;color:var(--white);}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;position:relative;z-index:1;}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;letter-spacing:2px;padding:17px 42px;border-radius:11px;transition:all .2s;text-transform:uppercase;box-shadow:0 4px 28px rgba(245,197,24,.38);display:inline-block;cursor:pointer;border:none;}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(245,197,24,.58);}
+.btn-outline{background:transparent;border:2px solid rgba(245,197,24,.4);color:var(--gold);font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;letter-spacing:2px;padding:15px 36px;border-radius:11px;transition:all .2s;text-transform:uppercase;display:inline-block;}
+.btn-outline:hover{border-color:var(--gold);background:rgba(245,197,24,.08);}
+.fomo-bar{display:inline-flex;align-items:center;gap:10px;background:rgba(232,33,58,.12);border:1px solid rgba(232,33,58,.22);border-radius:99px;padding:10px 22px;font-size:13px;color:rgba(240,240,248,.82);position:relative;z-index:1;}
+.fomo-dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:bl .9s ease-in-out infinite;}
+@keyframes bl{0%,100%{opacity:1;}50%{opacity:.25;}}
+.stats{display:flex;flex-wrap:wrap;border-top:1px solid rgba(245,197,24,.12);border-bottom:1px solid rgba(245,197,24,.12);background:rgba(245,197,24,.03);}
+.stat{flex:1;min-width:110px;padding:22px 16px;text-align:center;border-right:1px solid rgba(245,197,24,.08);}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--gold);}
+.stat-l{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-top:2px;}
+.section{padding:72px 24px;max-width:1100px;margin:0 auto;}
+.sec-label{font-family:'Oswald',sans-serif;font-size:10px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:10px;text-align:center;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,58px);letter-spacing:2px;text-align:center;margin-bottom:48px;line-height:1.05;}
+.sec-title span{color:var(--gold);}
+.get-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;}
+.get-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s;}
+.get-card:hover{border-color:rgba(245,197,24,.32);transform:translateY(-4px);}
+.get-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),transparent);}
+.get-icon{font-size:32px;margin-bottom:14px;}
+.get-title{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;margin-bottom:8px;}
+.get-desc{font-size:13px;color:var(--muted);line-height:1.65;}
+.get-tag{display:inline-block;margin-top:12px;background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.2);color:var(--gold);font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:2px;padding:3px 10px;border-radius:99px;}
+.how-section{padding:72px 24px;background:linear-gradient(180deg,transparent,rgba(26,58,107,.15),transparent);}
+.steps{max-width:860px;margin:0 auto;display:flex;flex-direction:column;position:relative;}
+.steps::before{content:'';position:absolute;left:27px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold),rgba(245,197,24,.1));}
+.step{display:flex;gap:24px;align-items:flex-start;padding:26px 0;border-bottom:1px solid var(--border);}
+.step:last-child{border-bottom:none;}
+.step-num{width:56px;height:56px;min-width:56px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;color:#000;position:relative;z-index:1;box-shadow:0 0 0 4px var(--black),0 0 0 6px rgba(245,197,24,.3);}
+.step-title{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;margin-bottom:5px;}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+.step-cta{display:inline-block;margin-top:10px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Oswald',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;padding:8px 18px;border-radius:7px;text-transform:uppercase;transition:all .2s;cursor:pointer;border:none;}
+.step-cta:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(245,197,24,.4);}
+.rewards-section{padding:72px 24px;max-width:1100px;margin:0 auto;}
+.rewards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+.reward-card{background:linear-gradient(135deg,rgba(26,58,107,.3),rgba(13,13,20,.8));border:1px solid rgba(26,58,107,.5);border-radius:12px;padding:24px 20px;text-align:center;transition:transform .2s,border-color .2s;}
+.reward-card:hover{transform:translateY(-3px);border-color:rgba(245,197,24,.3);}
+.reward-icon{font-size:36px;margin-bottom:12px;}
+.reward-title{font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;margin-bottom:6px;}
+.reward-desc{font-size:12px;color:var(--muted);line-height:1.55;}
+.urgency{padding:80px 24px;text-align:center;background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(232,33,58,.08),transparent 70%);}
+.urgency-warn{display:inline-flex;align-items:center;gap:8px;background:rgba(232,33,58,.12);border:1px solid rgba(232,33,58,.25);color:var(--red);font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:2px;padding:7px 18px;border-radius:99px;margin-bottom:24px;}
+.urgency h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7vw,80px);letter-spacing:3px;margin-bottom:16px;line-height:1;}
+.urgency h2 span{background:linear-gradient(135deg,var(--gold),#fff176);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.urgency-points{display:flex;flex-direction:column;gap:8px;max-width:380px;margin:0 auto 36px;}
+.urgency-point{display:flex;align-items:center;gap:10px;background:rgba(232,33,58,.07);border:1px solid rgba(232,33,58,.15);border-radius:8px;padding:10px 14px;font-size:13px;color:rgba(240,240,248,.8);}
+.social-bar{background:#0d0d14;border-top:1px solid #252535;padding:28px 24px 22px;text-align:center;}
+.social-label{font-family:'Oswald',sans-serif;font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;}
+.social-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
+.social-btn{display:flex;align-items:center;gap:9px;border-radius:10px;padding:11px 22px;text-decoration:none;transition:all .2s;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;color:#f0f0f8;}
+.social-btn:hover{transform:translateY(-2px);}
+.swa{background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.28);}
+.swa:hover{box-shadow:0 6px 20px rgba(37,211,102,.3);}
+.stg{background:rgba(0,136,204,.12);border:1px solid rgba(0,136,204,.28);}
+.stg:hover{box-shadow:0 6px 20px rgba(0,136,204,.3);}
+.sem{background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.22);}
+.sem:hover{box-shadow:0 6px 20px rgba(245,197,24,.3);}
+.social-copy{font-size:10px;color:rgba(112,112,160,.45);font-family:'Oswald',sans-serif;letter-spacing:2px;text-transform:uppercase;}
+footer{padding:30px 24px;border-top:1px solid var(--border);text-align:center;}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;margin-bottom:8px;}
+.footer-brand span{color:var(--gold);}
+.footer-tagline{font-family:'Oswald',sans-serif;font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:14px;text-transform:uppercase;}
+.footer-terms{font-size:11px;color:var(--muted);line-height:1.8;margin-bottom:10px;}
+.footer-terms a{color:var(--gold);cursor:pointer;text-decoration:underline;}
+.footer-bottom{font-size:10px;color:rgba(112,112,160,.45);letter-spacing:2px;text-transform:uppercase;border-top:1px solid var(--border);padding-top:14px;margin-top:14px;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;overflow-y:auto;backdrop-filter:blur(6px);padding:20px;}
+.modal-box{max-width:680px;margin:40px auto;background:#13131e;border:1px solid rgba(245,197,24,.25);border-radius:16px;padding:36px 28px;position:relative;}
+.modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:#f0f0f8;font-size:16px;width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:monospace;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;}
+.modal-sub{font-family:'Oswald',sans-serif;font-size:10px;color:var(--muted);letter-spacing:3px;margin-bottom:20px;text-transform:uppercase;}
+.modal-body{font-size:13px;color:#a0a0c0;line-height:1.85;font-family:'Inter',sans-serif;}
+.modal-body p{margin-bottom:13px;}
+.modal-body strong{color:#f0f0f8;}
+.modal-footer{margin-top:24px;text-align:center;}
+.modal-accept{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;padding:13px 32px;border-radius:9px;cursor:pointer;text-transform:uppercase;}
+#payModal .modal-box{max-width:440px;}
+.pay-field{margin-bottom:18px;}
+.pay-label{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:7px;display:block;}
+.pay-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(245,197,24,.2);border-radius:8px;padding:12px 14px;font-size:14px;color:var(--white);font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;}
+.pay-input:focus{border-color:rgba(245,197,24,.55);}
+.pay-input::placeholder{color:var(--muted);}
+.pay-amount-row{display:flex;align-items:center;gap:10px;background:rgba(245,197,24,.06);border:1px solid rgba(245,197,24,.15);border-radius:8px;padding:12px 16px;margin-bottom:20px;}
+.pay-amount-icon{font-size:20px;}
+.pay-amount-text{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;color:var(--gold);}
+.pay-amount-sub{font-size:11px;color:var(--muted);font-family:'Inter',sans-serif;}
+.pay-error{color:var(--red);font-size:12px;margin-top:6px;display:none;font-family:'Inter',sans-serif;}
+.pay-btn{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;font-family:'Oswald',sans-serif;font-size:15px;font-weight:700;letter-spacing:2px;padding:15px;border-radius:9px;cursor:pointer;text-transform:uppercase;transition:all .2s;margin-top:4px;}
+.pay-btn:hover{box-shadow:0 6px 24px rgba(245,197,24,.45);}
+.pay-btn:disabled{opacity:.6;cursor:not-allowed;}
+.pay-secure{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;font-size:11px;color:var(--muted);font-family:'Oswald',sans-serif;letter-spacing:1px;}
+
+/* ══════════════════════════════════════
+   MASTERLEE WIDGET — MOBILE FIRST v3
+══════════════════════════════════════ */
+#ml-fab{position:fixed;bottom:24px;right:20px;z-index:8888;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#f5c518,#e8a000);border:none;cursor:pointer;box-shadow:0 4px 24px rgba(245,197,24,.5);display:flex;align-items:center;justify-content:center;transition:all .25s;outline:none;animation:ml-pulse 3s ease-in-out infinite;}
+#ml-fab:hover{transform:scale(1.1) translateY(-3px);box-shadow:0 8px 36px rgba(245,197,24,.7);}
+#ml-fab.open{animation:none;background:linear-gradient(135deg,#e8213a,#b01020);box-shadow:0 4px 24px rgba(232,33,58,.5);}
+@keyframes ml-pulse{0%,100%{box-shadow:0 4px 24px rgba(245,197,24,.5);}50%{box-shadow:0 4px 36px rgba(245,197,24,.85),0 0 0 8px rgba(245,197,24,.12);}}
+#ml-fab-icon{font-size:26px;transition:all .2s;}
+#ml-fab-tooltip{position:absolute;right:70px;bottom:14px;background:#13131e;border:1px solid rgba(245,197,24,.3);color:#f0f0f8;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:1px;white-space:nowrap;padding:7px 14px;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .2s;}
+#ml-fab:hover #ml-fab-tooltip,#ml-fab.pulse-tooltip #ml-fab-tooltip{opacity:1;}
+#ml-fab-tooltip::after{content:'';position:absolute;right:-6px;top:50%;transform:translateY(-50%);border:6px solid transparent;border-right:none;border-left-color:#13131e;}
+
+/* FULLSCREEN ON MOBILE */
+#ml-window{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:8887;
+  width:100%;
+  height:92vh;
+  background:#0d0d14;
+  border:none;
+  border-radius:20px 20px 0 0;
+  box-shadow:0 -8px 40px rgba(0,0,0,.8);
+  display:flex;
+  flex-direction:column;
+  transform:translateY(100%);
+  opacity:0;
+  pointer-events:none;
+  transition:all .35s cubic-bezier(.34,1.2,.64,1);
+  overflow:hidden;
+  font-family:'Inter',sans-serif;
+}
+#ml-window.show{transform:translateY(0);opacity:1;pointer-events:all;}
+
+/* DESKTOP — keeps popup style */
+@media(min-width:600px){
+  #ml-window{
+    bottom:102px;
+    left:auto;
+    right:28px;
+    width:460px;
+    height:680px;
+    max-height:calc(100vh - 140px);
+    border-radius:18px;
+    border:1px solid rgba(245,197,24,.2);
+    transform:translateY(20px) scale(.95);
+  }
+  #ml-window.show{transform:translateY(0) scale(1);}
+}
+
+#ml-header{background:linear-gradient(135deg,#13131e,#1a1a2e);border-bottom:1px solid rgba(245,197,24,.15);padding:16px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
+#ml-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#f5c518,#e8a000);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;animation:ml-glow 2.5s ease-in-out infinite;}
+@keyframes ml-glow{0%,100%{box-shadow:0 0 0 2px rgba(245,197,24,.3);}50%{box-shadow:0 0 0 4px rgba(245,197,24,.5),0 0 12px rgba(245,197,24,.3);}}
+#ml-header-info{flex:1;}
+#ml-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#f5c518;line-height:1;}
+#ml-status{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:2px;color:#7070a0;text-transform:uppercase;display:flex;align-items:center;gap:5px;margin-top:3px;}
+#ml-status-dot{width:7px;height:7px;border-radius:50%;background:#00ff88;animation:blink .9s ease-in-out infinite;flex-shrink:0;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
+#ml-subject-tabs{display:flex;gap:6px;}
+.ml-tab{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:1px;padding:5px 10px;border-radius:99px;border:1px solid;cursor:pointer;transition:all .15s;text-transform:uppercase;}
+.ml-tab.phy{color:#93c5fd;border-color:rgba(59,130,246,.35);background:rgba(59,130,246,.1);}
+.ml-tab.mth{color:#d8b4fe;border-color:rgba(168,85,247,.35);background:rgba(168,85,247,.1);}
+.ml-tab.chm{color:#86efac;border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.1);}
+.ml-tab:hover,.ml-tab.active{filter:brightness(1.3);transform:scale(1.05);}
+
+#ml-messages{flex:1;overflow-y:auto;padding:16px 16px 10px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth;}
+#ml-messages::-webkit-scrollbar{width:4px;}
+#ml-messages::-webkit-scrollbar-track{background:transparent;}
+#ml-messages::-webkit-scrollbar-thumb{background:rgba(245,197,24,.2);border-radius:4px;}
+
+.ml-msg{display:flex;gap:10px;align-items:flex-end;animation:ml-fadein .3s ease forwards;}
+@keyframes ml-fadein{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.ml-msg.user{flex-direction:row-reverse;}
+.ml-bubble{max-width:82%;padding:12px 16px;font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;border-radius:16px;word-break:break-word;}
+.ml-msg.bot .ml-bubble{background:#13131e;border:1px solid rgba(245,197,24,.15);color:#d0d8f0;border-bottom-left-radius:4px;}
+.ml-msg.user .ml-bubble{background:linear-gradient(135deg,#f5c518,#e8a000);color:#000;font-weight:500;border-bottom-right-radius:4px;}
+.ml-mini-avatar{width:32px;height:32px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#f5c518,#e8a000);display:flex;align-items:center;justify-content:center;font-size:15px;}
+.ml-error-bubble{background:rgba(232,33,58,.12)!important;border-color:rgba(232,33,58,.3)!important;color:#ffaaaa!important;}
+
+.ml-typing{display:flex;align-items:center;gap:5px;padding:12px 16px;}
+.ml-typing span{width:7px;height:7px;border-radius:50%;background:rgba(245,197,24,.5);animation:ml-bounce .9s ease-in-out infinite;}
+.ml-typing span:nth-child(2){animation-delay:.15s;}
+.ml-typing span:nth-child(3){animation-delay:.3s;}
+@keyframes ml-bounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-7px);}}
+
+#ml-quick-wrap{padding:0 16px 10px;display:flex;flex-wrap:wrap;gap:7px;flex-shrink:0;}
+.ml-quick{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:1px;background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.2);color:#f5c518;border-radius:99px;padding:6px 12px;cursor:pointer;transition:all .15s;text-transform:uppercase;}
+.ml-quick:hover{background:rgba(245,197,24,.18);transform:translateY(-1px);}
+
+#ml-input-wrap{padding:12px 16px 16px;border-top:1px solid rgba(245,197,24,.1);display:flex;gap:10px;flex-shrink:0;}
+#ml-input{flex:1;background:#13131e;border:1px solid rgba(245,197,24,.2);border-radius:12px;color:#f0f0f8;font-family:'Inter',sans-serif;font-size:15px;padding:12px 16px;outline:none;resize:none;transition:border-color .2s;max-height:100px;line-height:1.5;}
+#ml-input:focus{border-color:rgba(245,197,24,.5);}
+#ml-input::placeholder{color:#3a3a5a;}
+#ml-send{width:46px;height:46px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg,#f5c518,#e8a000);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .2s;align-self:flex-end;}
+#ml-send:hover{transform:scale(1.1);box-shadow:0 4px 14px rgba(245,197,24,.45);}
+#ml-send:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+#ml-footer{text-align:center;padding:6px 12px 10px;font-family:'Inter',sans-serif;font-size:10px;color:rgba(112,112,160,.5);flex-shrink:0;line-height:1.6;border-top:1px solid rgba(245,197,24,.06);}
+#ml-footer a{color:rgba(245,197,24,.65);text-decoration:none;}
+.nav-hamburger{display:none;background:transparent;border:1px solid var(--border);color:var(--white);font-size:18px;width:38px;height:38px;border-radius:8px;cursor:pointer;}
+.nav-mobile{display:none;flex-direction:column;background:rgba(6,6,10,.98);border-top:1px solid var(--border);padding:12px 24px 16px;}
+.nav-mobile a{font-family:'Oswald',sans-serif;font-size:14px;letter-spacing:1px;color:var(--muted);padding:12px 0;border-bottom:1px solid var(--border);text-transform:uppercase;text-decoration:none;}
+.nav-mobile a:last-child{border-bottom:none;}
+.nav-mobile a:hover{color:var(--white);}
+.nav-mobile.open{display:flex;}
+@media(max-width:640px){
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;align-items:center;justify-content:center;}
+  .nav-cta{font-size:11px;padding:7px 14px;letter-spacing:1px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TERMS MODAL -->
+<div class="modal-overlay" id="termsModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('termsModal')">✕</button>
+    <div class="modal-title">Terms &amp; Conditions ⚡</div>
+    <div class="modal-sub">ExamMaster Series · Chaksman Group · 2025</div>
+    <div class="modal-body">
+      <p><strong>1. Eligibility</strong><br>ExamMaster is open to all registered students of accredited institutions. Participants must provide accurate personal information. False information leads to immediate disqualification.</p>
+      <p><strong>2. Payment &amp; Access</strong><br>Access requires a one-time payment via Paystack. Payments are non-refundable once access is granted. Ensure all details are correct before completing payment.</p>
+      <p><strong>3. Fair Play</strong><br>All quiz attempts must be your own. Sharing answers, colluding with others, or using external assistance during timed battles is strictly prohibited and results in permanent disqualification.</p>
+      <p><strong>4. Leaderboard &amp; Scoring</strong><br>Only first-attempt scores count toward official leaderboard rankings. Retry attempts are for learning only. ExamMaster reserves the right to verify scores and disqualify suspicious activity.</p>
+      <p><strong>5. Rewards</strong><br>Rewards are distributed at the sole discretion of Chaksman Group. Reward structures may be modified with notice. Rewards are non-transferable unless stated otherwise.</p>
+      <p><strong>6. Privacy</strong><br>Your personal information is collected solely to manage your account and leaderboard participation. We do not sell or share your data with third parties without consent.</p>
+      <p><strong>7. Conduct</strong><br>Participants must behave respectfully in all ExamMaster community spaces including Telegram and WhatsApp groups. Harassment or abusive behaviour results in immediate removal.</p>
+      <p style="margin-bottom:0;"><strong>8. Updates</strong><br>Chaksman Group reserves the right to update these terms at any time. Continued participation after updates constitutes acceptance of the revised terms.</p>
+    </div>
+    <div class="modal-footer"><button class="modal-accept" onclick="closeModal('termsModal')">✓ I AGREE — Close</button></div>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-overlay" id="payModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('payModal')">✕</button>
+    <div class="modal-title">Secure Your Spot ⚡</div>
+    <div class="modal-sub">ExamMaster · One-time Access · Season 2026</div>
+    <div class="pay-amount-row">
+      <div class="pay-amount-icon">💳</div>
+      <div>
+        <div class="pay-amount-text">₦1,600 — One-time Access</div>
+        <div class="pay-amount-sub">PHY102 · CHM102 · MTH102 Battle System</div>
+      </div>
+    </div>
+    <div class="pay-field">
+      <label class="pay-label" for="payName">Full Name</label>
+      <input class="pay-input" id="payName" type="text" placeholder="e.g. Amaka Johnson" autocomplete="name">
+      <div class="pay-error" id="nameErr">Please enter your name.</div>
+    </div>
+    <div class="pay-field">
+      <label class="pay-label" for="payEmail">Email Address</label>
+      <input class="pay-input" id="payEmail" type="email" placeholder="e.g. amaka@gmail.com" autocomplete="email">
+      <div class="pay-error" id="emailErr">Please enter a valid email address.</div>
+    </div>
+    <button class="pay-btn" id="payNowBtn" onclick="launchPaystack()">🏆 PAY ₦1,600 — GET ACCESS</button>
+    <div class="pay-secure">🔒 Secured by Paystack · SSL Encrypted</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <div class="nav-logo-wrap">
+        <img src="https://raw.githubusercontent.com/exammasterseries/exammaster/main/image-5.jpg" alt="ExamMaster">
+      </div>
+      <div>
+        <div class="brand-name">Exam<span>Master</span> ⚡</div>
+        <div class="brand-sub">102 Battle System</div>
+      </div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="home.html" class="active">🏠 Home</a>
+      <a href="leaderboard.html">🏆 Leaderboard</a>
+      <a href="quickfire.html">🚀 Lessons</a>
+      <a href="about.html">💡 About</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="nav-hamburger" id="navHamburger" onclick="toggleNav()">☰</button>
+      <button class="nav-cta" onclick="openPayModal()">⚡ Join — ₦1,600</button>
+    </div>
+  </div>
+  <!-- Mobile dropdown -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="home.html" class="active">🏠 Home</a>
+    <a href="leaderboard.html">🏆 Leaderboard</a>
+    <a href="quickfire.html">🚀 Lessons</a>
+    <a href="about.html">💡 About</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🔥 Season 2026 — Now Live</div>
+  <h1>
+    <span class="w1">EXAMMASTER</span>
+    <span class="w2">102 BATTLE</span>
+    <span class="w3">SYSTEM ⚡</span>
+  </h1>
+  <p class="hero-sub">
+    Master PHY102 · CHM102 · MTH102 through daily competition<br>
+    <strong style="color:#f5c518;">₦1,600 — One-time Access</strong>
+  </p>
+  <div class="hero-pills">
+    <div class="hpill">📚 PHY102 · CHM102 · MTH102</div>
+    <div class="hpill">🏆 Live Leaderboard</div>
+    <div class="hpill">⏱ Timed Battles</div>
+    <div class="hpill">🎁 Weekly Rewards</div>
+    <div class="hpill">🚀 Quickfire-Lessons</div>
+    <div class="hpill">🎓 MasterLee AI Tutor</div>
+  </div>
+  <div class="hero-btns">
+    <button class="btn-gold" onclick="openPayModal()">🏆 START BATTLE FOR ₦1,600 →</button>
+    <a class="btn-outline" href="https://exammasterseries.github.io/exammaster/leaderboard.html">VIEW LEADERBOARD</a>
+  </div>
+  <div class="fomo-bar">
+    <div class="fomo-dot"></div>
+    <span><strong>15 students</strong> already battling — secure your spot now!</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-n">3</div><div class="stat-l">Subjects</div></div>
+  <div class="stat"><div class="stat-n">25+</div><div class="stat-l">Questions</div></div>
+  <div class="stat"><div class="stat-n">3500+</div><div class="stat-l">Max Points</div></div>
+  <div class="stat"><div class="stat-n">🏆</div><div class="stat-l">Weekly Prize</div></div>
+  <div class="stat"><div class="stat-n">5</div><div class="stat-l">Battle Days per week</div></div>
+</div>
+
+<!-- WHAT YOU GET -->
+<div class="section">
+  <div class="sec-label">What's Inside</div>
+  <div class="sec-title">WHAT YOU <span>GET</span></div>
+  <div class="get-grid">
+    <div class="get-card"><div class="get-icon">📚</div><div class="get-title">Quickfire-Lessons + Quizzes</div><div class="get-desc">PHY102, CHM102 &amp; MTH102 broken into bite-size lessons before each timed question set. Learn the concept, then prove it.</div><div class="get-tag">LEARN FIRST</div></div>
+    <div class="get-card"><div class="get-icon">🏆</div><div class="get-title">Live Leaderboard + Scoring</div><div class="get-desc">Every correct answer earns points. See your name climb the leaderboard in real time. Top performers spotlighted weekly.</div><div class="get-tag">COMPETE LIVE</div></div>
+    <div class="get-card"><div class="get-icon">🎁</div><div class="get-title">Rewards for Top Performers</div><div class="get-desc">Consistent winners earn real rewards and recognition. Champions are announced weekly. Your effort gets noticed here.</div><div class="get-tag">WIN PRIZES</div></div>
+    <div class="get-card"><div class="get-icon">🚀</div><div class="get-title">Referral Perks</div><div class="get-desc">Bring in classmates and unlock exclusive benefits. The more your squad competes, the higher everyone ranks.</div><div class="get-tag">EARN MORE</div></div>
+    <div class="get-card"><div class="get-icon">⚡</div><div class="get-title">Daily Battle Rotation</div><div class="get-desc">Battles rotate across all three subjects daily. Consistency is the key to dominating the leaderboard.</div><div class="get-tag">STAY SHARP</div></div>
+    <div class="get-card"><div class="get-icon">🎓</div><div class="get-title">MasterLee AI Tutor</div><div class="get-desc">Stuck on a concept? Ask MasterLee — your 24/7 AI tutor trained on the full Unilorin PHY102, MTH102 &amp; CHM102 syllabus.</div><div class="get-tag">AI-POWERED</div></div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-section">
+  <div style="max-width:1100px;margin:0 auto;"><div class="sec-label">The Process</div><div class="sec-title" style="text-align:center;">HOW IT <span style="color:var(--gold)">WORKS</span></div></div>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div><div class="step-title">Make Your Payment</div><div class="step-desc">Secure your spot with a one-time payment of <strong style="color:#f5c518;">₦1,600</strong> via Paystack. Launch price is limited — once it's gone, it's gone.</div><button class="step-cta" onclick="openPayModal()">PAY NOW →</button></div></div>
+    <div class="step"><div class="step-num">2</div><div><div class="step-title">Complete Registration</div><div class="step-desc">Fill in your name, email, and accept the <a href="#" onclick="openModal('termsModal');return false;" style="color:var(--gold);">Terms &amp; Conditions</a>. Takes under 2 minutes.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div><div class="step-title">Access Quizzes &amp; Micro-Lessons</div><div class="step-desc">Open your daily challenge. Read the Quickfire-lesson first — then battle through 10 timed questions.</div></div></div>
+    <div class="step"><div class="step-num">4</div><div><div class="step-title">See Your Score &amp; Leaderboard Position</div><div class="step-desc">Every answer is instantly graded. Your score updates the leaderboard immediately.</div></div></div>
+    <div class="step"><div class="step-num">5</div><div><div class="step-title">Join Telegram / WhatsApp Group</div><div class="step-desc">Connect with the community. Get battle schedules, results, announcements, and champion spotlights.</div></div></div>
+  </div>
+</div>
+
+<!-- REWARDS -->
+<div class="rewards-section">
+  <div class="sec-label">Recognition</div>
+  <div class="sec-title">REWARDS &amp; <span>RECOGNITION</span></div>
+  <div class="rewards-grid">
+    <div class="reward-card"><div class="reward-icon">🏆</div><div class="reward-title">Weekly Recognition</div><div class="reward-desc">Top performers publicly recognised every week. Your name on top is the goal.</div></div>
+    <div class="reward-card"><div class="reward-icon">🎁</div><div class="reward-title">Special Rewards</div><div class="reward-desc">Consistent winners receive special prizes. Show up every day, top the board, earn yours.</div></div>
+    <div class="reward-card"><div class="reward-icon">👑</div><div class="reward-title">Champion Spotlight</div><div class="reward-desc">Season champions get featured across all ExamMaster channels.</div></div>
+    <div class="reward-card"><div class="reward-icon">🚀</div><div class="reward-title">Referral Bonus</div><div class="reward-desc">Refer classmates and unlock exclusive perks. Build your squad, dominate together.</div></div>
+  </div>
+</div>
+
+<!-- URGENCY -->
+<section class="urgency">
+  <div class="urgency-warn">⚠️ LIMITED ACCESS — LAUNCH PRICING</div>
+  <h2>SECURE YOUR<br><span>SPOT NOW</span></h2>
+  <div class="urgency-points">
+    <div class="urgency-point"><span>⚠️</span> Only serious students allowed</div>
+    <div class="urgency-point"><span>⚠️</span> Launch price ends soon</div>
+    <div class="urgency-point"><span>⚠️</span> Limited slots available</div>
+  </div>
+  <button class="btn-gold" onclick="openPayModal()" style="font-size:18px;padding:20px 52px;">🏆 SECURE MY SPOT — ₦1,600 →</button>
+  <br><br>
+  <p style="font-size:12px;color:var(--muted);font-family:'Oswald',sans-serif;letter-spacing:2px;margin-top:8px;">⚡ ONLY SERIOUS STUDENTS COMPETE. YOUR RANKING STARTS NOW.</p>
+</section>
+
+<div style="margin-top:10px;font-size:13px;color:#aaa;text-align:center;padding-bottom:10px;">
+  <span style="text-decoration:line-through;color:#777;">₦3,000</span>
+  <span style="color:#f5c518;font-weight:700;"> ₦1,600 Launch Price</span>
+</div>
+
+<!-- SOCIAL BAR -->
+<div class="social-bar">
+  <div class="social-label">Connect With Us</div>
+  <div class="social-links">
+    <a href="https://chat.whatsapp.com/KwilJRlV4dSIieyKkKAlGB" target="_blank" class="social-btn swa">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://t.me/exammaster2026" target="_blank" class="social-btn stg">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#0088cc"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Telegram
+    </a>
+    <a href="mailto:exammasterseries@gmail.com" class="social-btn sem">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#f5c518"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      Email Us
+    </a>
+  </div>
+  <div class="social-copy">© 2026 ExamMaster Series · Chaksman Group</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand"><span>Exam</span>Master ⚡</div>
+  <div class="footer-tagline">Learn Faster · Compete Harder · Rank Higher</div>
+  <div class="footer-terms">By joining ExamMaster, you accept our <a onclick="openModal('termsModal');return false;">Terms &amp; Conditions</a> and confirm your seat in the 102 Battle System. Powered by <strong style="color:var(--gold);">Chaksman Group</strong></div>
+  <div class="footer-bottom">© 2026 ExamMaster Series · PHY102 · CHM102 · MTH102</div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     MASTERLEE AI WIDGET — v2
+     Gemini · Cloudflare · Full Syllabus
+     Paste your Worker URL below ↓
+══════════════════════════════════════ -->
+<div id="masterlee-widget">
+  <button id="ml-fab" onclick="mlToggle()" aria-label="Chat with MasterLee">
+    <span id="ml-fab-icon">🎓</span>
+    <div id="ml-fab-tooltip">Ask MasterLee ⚡</div>
+  </button>
+  <div id="ml-window">
+    <div id="ml-header">
+      <div id="ml-avatar">🎓</div>
+      <div id="ml-header-info">
+        <div id="ml-name">MASTERLEE</div>
+        <div id="ml-status"><span id="ml-status-dot"></span>Online · PHY · MTH · CHM</div>
+      </div>
+      <div id="ml-subject-tabs">
+        <div class="ml-tab phy" onclick="mlSetSubject('phy',this)">PHY</div>
+        <div class="ml-tab mth" onclick="mlSetSubject('mth',this)">MTH</div>
+        <div class="ml-tab chm" onclick="mlSetSubject('chm',this)">CHM</div>
+      </div>
+    </div>
+    <div id="ml-messages"></div>
+    <div id="ml-quick-wrap">
+      <div class="ml-quick" onclick="mlQuick(this)">Ohm's Law &amp; DC Circuits</div>
+      <div class="ml-quick" onclick="mlQuick(this)">Gauss's Law flux</div>
+      <div class="ml-quick" onclick="mlQuick(this)">Lenz's &amp; Faraday's Laws</div>
+      <div class="ml-quick" onclick="mlQuick(this)">AC circuit RLC combinations</div>
+    </div>
+    <div id="ml-input-wrap">
+      <textarea id="ml-input" placeholder="Ask MasterLee about PHY, MTH or CHM 102..." rows="1"
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();mlSend();}"
+        oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,90)+'px'"></textarea>
+      <button id="ml-send" onclick="mlSend()">➤</button>
+    </div>
+    <div id="ml-footer">
+      MasterLee AI · ExamMaster · Chaksman Group<br>
+      MasterLee is an AI and can make mistakes. &nbsp;|&nbsp;
+      Issues? <a href="mailto:exammasterseries@gmail.com">exammasterseries@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══ PAYSTACK CONFIG ══ */
+var PAYSTACK_PUBLIC_KEY = 'pk_test_9e67fa5c0a660d63f1b4047a80c2772ca1c00f76';
+var AMOUNT_KOBO = 160000;
+
+function openModal(id){document.getElementById(id).style.display='block';document.body.style.overflow='hidden';}
+function closeModal(id){document.getElementById(id).style.display='none';document.body.style.overflow='';}
+function openPayModal(){
+  document.getElementById('payName').value='';
+  document.getElementById('payEmail').value='';
+  document.getElementById('nameErr').style.display='none';
+  document.getElementById('emailErr').style.display='none';
+  document.getElementById('payNowBtn').disabled=false;
+  document.getElementById('payNowBtn').textContent='🏆 PAY ₦1,600 — GET ACCESS';
+  openModal('payModal');
+}
+function launchPaystack(){
+  var name=document.getElementById('payName').value.trim();
+  var email=document.getElementById('payEmail').value.trim();
+  var valid=true;
+  document.getElementById('nameErr').style.display='none';
+  document.getElementById('emailErr').style.display='none';
+  if(!name){document.getElementById('nameErr').style.display='block';valid=false;}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('emailErr').style.display='block';valid=false;}
+  if(!valid)return;
+  document.getElementById('payNowBtn').disabled=true;
+  document.getElementById('payNowBtn').textContent='Opening Paystack…';
+  var handler=PaystackPop.setup({
+    key:PAYSTACK_PUBLIC_KEY,
+    email:email,
+    amount:AMOUNT_KOBO,
+    currency:'NGN',
+    ref:'EM-'+Date.now()+'-'+Math.floor(Math.random()*1000000),
+    metadata:{custom_fields:[
+      {display_name:'Full Name',variable_name:'full_name',value:name},
+      {display_name:'Product',variable_name:'product',value:'ExamMaster 102 Battle System'}
+    ]},
+    callback:function(response){
+      closeModal('payModal');
+      // Payment successful — open Tally form with reference pre-filled
+      openTallyModal(response.reference, name, email);
+    },
+    onClose:function(){
+      document.getElementById('payNowBtn').disabled=false;
+      document.getElementById('payNowBtn').textContent='🏆 PAY ₦1,600 — GET ACCESS';
+    }
+  });
+  handler.openIframe();
+}
+document.querySelectorAll('.modal-overlay').forEach(function(o){
+  o.addEventListener('click',function(e){if(e.target===this)closeModal(this.id);});
+});
+
+/* ══════════════════════════════════════
+   MASTERLEE CONFIG
+   ▶ Paste your Cloudflare Worker URL here
+══════════════════════════════════════ */
+const WORKER_URL = "https://masterlee-new.exammasterseries.workers.dev";
+
+/* ══ QUICK PROMPT BANKS ══ */
+const ML_PROMPTS = {
+  phy: ["Ohm's Law & DC Circuits","Gauss's Law flux","Lenz's & Faraday's Laws","AC circuit RLC combinations"],
+  mth: ["Limits & continuity","Integration by parts","Cramer's rule for matrices","Taylor's Theorem"],
+  chm: ["Fullerenes & Nanostructures","IUPAC naming rules","Stereochemistry isomerism","Group IA vs IIA metals"]
+};
+
+const ML_INTROS = {
+  phy:"PHY 102 mode activated ⚡ Electrostatics, circuits, EM waves, magnetism — ask me anything. What's giving you stress?",
+  mth:"MTH 102 mode activated ∑ Derivatives, integrals, matrices, Taylor series — bring your worst question. Let's calculate our way out of carryover!",
+  chm:"CHM 102 mode activated ⚗️ Organic chemistry, fullerenes, metals, functional groups — what do you need?"
+};
+
+/* ══ STATE ══ */
+let mlOpen=false,mlLoading=false,mlHistory=[],mlCurrentSubject='phy',mlGreeted=false;
+
+function mlToggle(){
+  mlOpen=!mlOpen;
+  document.getElementById('ml-window').classList.toggle('show',mlOpen);
+  document.getElementById('ml-fab').classList.toggle('open',mlOpen);
+  document.getElementById('ml-fab-icon').textContent=mlOpen?'✕':'🎓';
+  if(mlOpen&&!mlGreeted){mlGreeted=true;setTimeout(mlGreeting,420);}
+  if(mlOpen)setTimeout(()=>document.getElementById('ml-input').focus(),360);
+}
+
+function mlGreeting(){
+  const g=[
+    "Oshey! MasterLee has entered the chat! 🔥 I cover PHY 102, MTH 102, and CHM 102 — strictly Unilorin syllabus. Ask me anything and let's make sure Carryover doesn't know your name this semester! Which subject is giving you headache?",
+    "Idan detected! 👑 MasterLee is online and fully loaded. PHY, MTH, CHM — bring your worst question. What topic is currently beating you?",
+    "Ah ahn! You came to the right place. MasterLee is here, charged like a +Q point charge ⚡ Which of the three subjects is doing you anyhow today?"
+  ];
+  mlAddMessage('bot',g[Math.floor(Math.random()*g.length)]);
+}
+
+function mlSetSubject(subj,el){
+  mlCurrentSubject=subj;
+  document.querySelectorAll('.ml-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  mlAddMessage('bot',ML_INTROS[subj]);
+  const qw=document.getElementById('ml-quick-wrap');
+  qw.innerHTML='';
+  ML_PROMPTS[subj].forEach(p=>{
+    const d=document.createElement('div');
+    d.className='ml-quick';d.textContent=p;
+    d.onclick=()=>mlQuick(d);qw.appendChild(d);
+  });
+}
+
+function mlQuick(el){document.getElementById('ml-input').value=el.textContent;mlSend();}
+
+function mlAddMessage(role,text,isError){
+  const wrap=document.getElementById('ml-messages');
+  const div=document.createElement('div');
+  div.className='ml-msg '+role;
+  const cls='ml-bubble'+(isError?' ml-error-bubble':'');
+  if(role==='bot'){div.innerHTML=`<div class="ml-mini-avatar">🎓</div><div class="${cls}">${text.replace(/\n/g,'<br>')}</div>`;}
+  else{div.innerHTML=`<div class="${cls}">${text}</div>`;}
+  wrap.appendChild(div);wrap.scrollTop=wrap.scrollHeight;
+}
+
+function mlShowTyping(){
+  const wrap=document.getElementById('ml-messages');
+  const div=document.createElement('div');
+  div.className='ml-msg bot';div.id='ml-typing-indicator';
+  div.innerHTML=`<div class="ml-mini-avatar">🎓</div><div class="ml-bubble ml-typing"><span></span><span></span><span></span></div>`;
+  wrap.appendChild(div);wrap.scrollTop=wrap.scrollHeight;
+}
+function mlHideTyping(){const el=document.getElementById('ml-typing-indicator');if(el)el.remove();}
+
+async function mlSend(){
+  const input=document.getElementById('ml-input');
+  const text=input.value.trim();
+  if(!text||mlLoading)return;
+  input.value='';input.style.height='auto';
+  mlAddMessage('user',text);
+  mlHistory.push({role:'user',content:text});
+  mlLoading=true;
+  document.getElementById('ml-send').disabled=true;
+  input.disabled=true;
+  mlShowTyping();
+  try{
+    const res=await fetch(WORKER_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({subject:mlCurrentSubject,history:mlHistory.slice(-10)})
+    });
+    if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error||`Server error ${res.status}`);}
+    const data=await res.json();
+    const reply=data.reply||"Omo, MasterLee glitched 😅 Try again!";
+    mlHideTyping();mlAddMessage('bot',reply);
+    mlHistory.push({role:'assistant',content:reply});
+    if(mlHistory.length>20)mlHistory=mlHistory.slice(-20);
+  }catch(err){
+    mlHideTyping();
+    console.error('MasterLee:',err);
+    let msg="Network gbege! 😅 Check your connection and try again.";
+    if(err.message.includes('Worker URL'))msg="⚠️ WORKER_URL not configured yet. Paste your Cloudflare Worker URL into the script!";
+    else if(err.message.includes('Failed to fetch'))msg="Omo, can't reach the server. Make sure your Cloudflare Worker is deployed and the URL is correct!";
+    mlAddMessage('bot',msg,true);
+  }finally{
+    mlLoading=false;
+    document.getElementById('ml-send').disabled=false;
+    input.disabled=false;input.focus();
+  }
+}
+
+/* Pulse tooltip 3s after load */
+setTimeout(()=>{
+  const fab=document.getElementById('ml-fab');
+  fab.classList.add('pulse-tooltip');
+  setTimeout(()=>fab.classList.remove('pulse-tooltip'),4500);
+},3000);
+function openTallyModal(reference, name, email) {
+  // Display reference code
+  document.getElementById('payRefDisplay').textContent = reference;
+
+  // Build Tally form URL with pre-filled fields
+  // Replace YOUR_TALLY_FORM_ID with your actual Tally form ID
+  const tallyBase = 'https://tally.so/r/xX0O0v';
+  const params = new URLSearchParams({
+    'Paystack Reference Code': reference,
+    'Official Email Address': email,
+  });
+
+  document.getElementById('tallyFrame').src = tallyBase + '?' + params.toString();
+  openModal('tallyModal');
+}
+function toggleNav(){
+  document.getElementById('navMobile').classList.toggle('open');
+}
+// Close mobile nav when clicking outside
+document.addEventListener('click', function(e){
+  const nav = document.getElementById('navMobile');
+  const btn = document.getElementById('navHamburger');
+  if(nav && btn && !nav.contains(e.target) && !btn.contains(e.target)){
+    nav.classList.remove('open');
+  }
+});
+</script>
+<!-- TALLY REGISTRATION MODAL -->
+<div class="modal-overlay" id="tallyModal">
+  <div class="modal-box" style="max-width:560px;">
+    <div class="modal-title">Complete Your Registration 📋</div>
+    <div class="modal-sub">Payment confirmed · Fill your details below</div>
+    <div style="background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+      <span style="font-size:20px;">✅</span>
+      <div>
+        <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;color:#00ff88;letter-spacing:1px;">PAYMENT CONFIRMED</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">Reference: <span id="payRefDisplay" style="color:var(--gold);font-family:monospace;"></span></div>
+      </div>
+    </div>
+    <iframe id="tallyFrame"
+      src=""
+      width="100%"
+      height="500px"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+      style="border-radius:10px;background:#fff;">
+      Loading registration form...
+    </iframe>
+    <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:12px;font-family:'Oswald',sans-serif;letter-spacing:1px;">
+      ⚠️ Your Paystack Reference Code is your proof of payment. Keep it safe.
+    </p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExamMaster — Quickfire Lessons</title>
+<link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/exammasterseries/exammaster/main/image-5.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#06060a;color:#f0f0f8;font-family:'Inter',sans-serif;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+:root{
+  --gold:#f5c518;--gold2:#e8a000;--navy:#1a3a6b;--red:#e8213a;
+  --black:#06060a;--dark:#0d0d14;--card:#13131e;--border:#252535;
+  --muted:#7070a0;--white:#f0f0f8;--green:#00ff88;
+  --phy:#3b82f6;--mth:#a855f7;--chm:#22c55e;
+}
+
+/* NAV */
+nav{background:rgba(6,6,10,.96);border-bottom:1px solid rgba(245,197,24,.18);padding:0 24px;position:sticky;top:0;z-index:200;backdrop-filter:blur(14px);}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:62px;}
+.nav-brand{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;}
+.nav-brand span{color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-back{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:1px;color:var(--muted);padding:7px 13px;border-radius:7px;transition:all .2s;text-transform:uppercase;border:1px solid var(--border);background:transparent;cursor:pointer;}
+.nav-back:hover{color:var(--white);background:rgba(255,255,255,.07);}
+
+/* HERO */
+.qf-hero{padding:56px 24px 44px;text-align:center;background:linear-gradient(rgba(6,6,10,.75),rgba(6,6,10,.9)),url('https://i.postimg.cc/bvScYVHH/download-id-1Ap8y-Bz9TZRn2Qg-F6gchl8fp03Usy557P-export-view.jpg') center/cover no-repeat;border-bottom:1px solid rgba(245,197,24,.1);position:relative;overflow:hidden;}
+.qf-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(245,197,24,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,197,24,.04) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent);pointer-events:none;}
+.qf-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.25);color:var(--gold);font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:3px;padding:6px 16px;border-radius:99px;margin-bottom:20px;position:relative;z-index:1;}
+.qf-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,9vw,88px);letter-spacing:3px;margin-bottom:10px;line-height:.95;position:relative;z-index:1;}
+.qf-hero h1 span{background:linear-gradient(135deg,var(--gold),#fff176);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 40px rgba(245,197,24,.5));}
+.qf-hero p{font-family:'Oswald',sans-serif;font-size:13px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:28px;position:relative;z-index:1;}
+
+/* SUBJECT TABS */
+.subject-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.stab{font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:2px;padding:12px 28px;border-radius:10px;border:2px solid;cursor:pointer;transition:all .2s;text-transform:uppercase;}
+.stab.phy{color:#93c5fd;border-color:rgba(59,130,246,.4);background:rgba(59,130,246,.08);}
+.stab.mth{color:#d8b4fe;border-color:rgba(168,85,247,.4);background:rgba(168,85,247,.08);}
+.stab.chm{color:#86efac;border-color:rgba(34,197,94,.4);background:rgba(34,197,94,.08);}
+.stab:hover,.stab.active{filter:brightness(1.3);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3);}
+.stab.phy.active{background:rgba(59,130,246,.2);border-color:#3b82f6;}
+.stab.mth.active{background:rgba(168,85,247,.2);border-color:#a855f7;}
+.stab.chm.active{background:rgba(34,197,94,.2);border-color:#22c55e;}
+
+/* MAIN */
+.qf-main{max-width:1100px;margin:0 auto;padding:40px 24px 80px;}
+
+/* SUBJECT PANEL */
+.subject-panel{display:none;}
+.subject-panel.active{display:block;}
+
+.subject-header{display:flex;align-items:center;gap:16px;margin-bottom:32px;padding:20px 24px;border-radius:14px;border:1px solid;}
+.subject-header.phy{background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.25);}
+.subject-header.mth{background:rgba(168,85,247,.08);border-color:rgba(168,85,247,.25);}
+.subject-header.chm{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.25);}
+.subject-icon{font-size:40px;}
+.subject-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;}
+.subject-title.phy{color:#93c5fd;}
+.subject-title.mth{color:#d8b4fe;}
+.subject-title.chm{color:#86efac;}
+.subject-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-top:4px;}
+
+/* TOPIC CARDS */
+.topics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+.topic-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .2s,transform .2s;cursor:pointer;}
+.topic-card:hover{transform:translateY(-3px);}
+.topic-card.phy:hover{border-color:rgba(59,130,246,.4);}
+.topic-card.mth:hover{border-color:rgba(168,85,247,.4);}
+.topic-card.chm:hover{border-color:rgba(34,197,94,.4);}
+.topic-header{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.topic-header.phy{background:rgba(59,130,246,.06);}
+.topic-header.mth{background:rgba(168,85,247,.06);}
+.topic-header.chm{background:rgba(34,197,94,.06);}
+.topic-name{font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;}
+.topic-icon{font-size:18px;}
+.topic-chevron{font-size:12px;color:var(--muted);transition:transform .2s;}
+.topic-card.open .topic-chevron{transform:rotate(180deg);}
+.topic-body{display:none;padding:18px;}
+.topic-card.open .topic-body{display:block;}
+
+/* LESSON CONTENT */
+.lesson-summary{font-size:13px;color:rgba(240,240,248,.75);line-height:1.7;margin-bottom:16px;padding:12px 14px;background:rgba(255,255,255,.03);border-radius:8px;border-left:3px solid;}
+.lesson-summary.phy{border-color:#3b82f6;}
+.lesson-summary.mth{border-color:#a855f7;}
+.lesson-summary.chm{border-color:#22c55e;}
+
+.section-label{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;margin-top:14px;}
+.section-label.phy{color:#93c5fd;}
+.section-label.mth{color:#d8b4fe;}
+.section-label.chm{color:#86efac;}
+
+.key-points{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.kp{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:rgba(240,240,248,.8);line-height:1.55;}
+.kp-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.kp-dot.phy{background:#3b82f6;}
+.kp-dot.mth{background:#a855f7;}
+.kp-dot.chm{background:#22c55e;}
+
+.formula-wrap{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.formula{background:rgba(0,0,0,.4);border:1px solid rgba(245,197,24,.15);border-radius:8px;padding:10px 14px;font-family:monospace;font-size:13px;color:var(--gold);}
+.formula-label{font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:1px;}
+
+.shortcuts{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.shortcut{background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.15);border-radius:8px;padding:10px 14px;font-size:12px;color:rgba(240,240,248,.8);line-height:1.5;}
+.shortcut strong{color:var(--green);}
+
+.exam-tips{display:flex;flex-direction:column;gap:6px;}
+.exam-tip{background:rgba(232,33,58,.06);border:1px solid rgba(232,33,58,.18);border-radius:8px;padding:10px 14px;font-size:12px;color:rgba(240,240,248,.8);line-height:1.5;}
+.exam-tip strong{color:#ff6b6b;}
+
+/* PROGRESS BAR */
+.progress-bar{height:3px;border-radius:99px;margin-bottom:28px;overflow:hidden;background:var(--border);}
+.progress-fill{height:100%;border-radius:99px;transition:width .5s ease;}
+.progress-fill.phy{background:linear-gradient(90deg,#3b82f6,#93c5fd);}
+.progress-fill.mth{background:linear-gradient(90deg,#a855f7,#d8b4fe);}
+.progress-fill.chm{background:linear-gradient(90deg,#22c55e,#86efac);}
+
+/* SEARCH */
+.search-wrap{margin-bottom:28px;}
+.search-input{width:100%;padding:13px 18px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--white);font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color .2s;}
+.search-input:focus{border-color:rgba(245,197,24,.4);}
+.search-input::placeholder{color:var(--muted);}
+
+/* FOOTER */
+.qf-footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border);}
+.qf-footer-text{font-family:'Oswald',sans-serif;font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;padding:14px 32px;border-radius:10px;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s;display:inline-block;text-decoration:none;}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,197,24,.4);}
+
+@media(max-width:600px){.topics-grid{grid-template-columns:1fr;}.subject-header{flex-direction:column;text-align:center;}.qf-main{padding:28px 16px 60px;}}
+.nav-logo-wrap{width:38px;height:38px;border-radius:8px;overflow:hidden;border:1px solid rgba(245,197,24,.25);background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-logo-wrap img{width:34px;height:34px;object-fit:contain;}
+.brand-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;line-height:1;}
+.brand-name span{color:var(--gold);}
+.nav-brand{display:flex;align-items:center;gap:10px;}
+.nav-links{display:flex;gap:4px;}
+.nav-links a{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:1px;color:var(--muted);padding:7px 13px;border-radius:7px;transition:all .2s;text-transform:uppercase;text-decoration:none;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(255,255,255,.07);}
+.nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Oswald',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;padding:9px 20px;border-radius:8px;transition:all .2s;text-transform:uppercase;display:inline-block;cursor:pointer;border:none;text-decoration:none;}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(245,197,24,.45);}
+.nav-hamburger{display:none;background:transparent;border:1px solid var(--border);color:var(--white);font-size:18px;width:38px;height:38px;border-radius:8px;cursor:pointer;}
+.nav-mobile{display:none;flex-direction:column;background:rgba(6,6,10,.98);border-top:1px solid var(--border);padding:12px 24px 16px;}
+.nav-mobile a{font-family:'Oswald',sans-serif;font-size:14px;letter-spacing:1px;color:var(--muted);padding:12px 0;border-bottom:1px solid var(--border);text-transform:uppercase;text-decoration:none;}
+.nav-mobile a:last-child{border-bottom:none;}
+.nav-mobile a:hover{color:var(--white);}
+.nav-mobile.open{display:flex;}
+@media(max-width:640px){
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;align-items:center;justify-content:center;}
+  .nav-cta{font-size:11px;padding:7px 14px;letter-spacing:1px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <div class="nav-logo-wrap">
+        <img src="https://raw.githubusercontent.com/exammasterseries/exammaster/main/image-5.jpg" alt="ExamMaster">
+      </div>
+      <div>
+        <div class="brand-name">Exam<span>Master</span> ⚡</div>
+      </div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="home.html">🏠 Home</a>
+      <a href="leaderboard.html">🏆 Leaderboard</a>
+      <a href="quickfire.html" class="active">🚀 Lessons</a>
+      <a href="about.html">💡 About</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="nav-hamburger" id="navHamburger" onclick="toggleNav()">☰</button>
+      <a href="home.html" class="nav-cta">← Home</a>
+    </div>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="home.html">🏠 Home</a>
+    <a href="leaderboard.html">🏆 Leaderboard</a>
+    <a href="quickfire.html" class="active">🚀 Lessons</a>
+    <a href="about.html">💡 About</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="qf-hero">
+  <div class="qf-badge">🚀 Season 2026 — Full Syllabus</div>
+  <h1>QUICKFIRE <span>LESSONS</span></h1>
+  <p>PHY102 · CHM102 · MTH102 — Summaries · Formulas · Shortcuts · Exam Tips</p>
+  <div class="subject-tabs">
+    <div class="stab phy active" onclick="switchSubject('phy',this)">⚡ PHY102</div>
+    <div class="stab mth" onclick="switchSubject('mth',this)">📐 MTH102</div>
+    <div class="stab chm" onclick="switchSubject('chm',this)">🧪 CHM102</div>
+  </div>
+</div>
+
+<div class="qf-main">
+
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <input class="search-input" id="searchInput" placeholder="🔍 Search topics, formulas, keywords..." oninput="searchTopics(this.value)"/>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       PHY102 PANEL
+  ═══════════════════════════════════ -->
+  <div class="subject-panel active" id="panel-phy">
+    <div class="subject-header phy">
+      <div class="subject-icon">⚡</div>
+      <div>
+        <div class="subject-title phy">PHY 102 — General Physics II</div>
+        <div class="subject-desc">Electricity & Magnetism · Circuits · Electromagnetic Induction · Waves<br>8 Topics · Coulomb to Maxwell</div>
+      </div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill phy" style="width:100%"></div></div>
+    <div class="topics-grid" id="phy-topics">
+
+      <!-- Topic 1 -->
+      <div class="topic-card phy" onclick="toggleTopic(this)">
+        <div class="topic-header phy">
+          <div class="topic-name"><span class="topic-icon">🔋</span> Electric Charge & Matter</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary phy">Matter is made of atoms. Charge exists as positive (protons) and negative (electrons). Like charges repel, opposite charges attract. Charge is conserved — it cannot be created or destroyed, only transferred.</div>
+          <div class="section-label phy">Key Points</div>
+          <div class="key-points">
+            <div class="kp"><div class="kp-dot phy"></div>Conductors allow free electron flow (metals). Insulators resist it (rubber, glass).</div>
+            <div class="kp"><div class="kp-dot phy"></div>Semiconductors (silicon, germanium) conduct under certain conditions.</div>
+            <div class="kp"><div class="kp-dot phy"></div>Charge unit: Coulomb (C). Electron charge = 1.6 × 10⁻¹⁹ C.</div>
+            <div class="kp"><div class="kp-dot phy"></div>Charging methods: friction, conduction, induction.</div>
+          </div>
+          <div class="section-label phy">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>CBT Favourite:</strong> "Which is a semiconductor?" — Answer: Silicon or Germanium.</div>
+            <div class="exam-tip"><strong>Watch out:</strong> Charge conservation questions — total charge before = total charge after.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 2 -->
+      <div class="topic-card phy" onclick="toggleTopic(this)">
+        <div class="topic-header phy">
+          <div class="topic-name"><span class="topic-icon">⚖️</span> Coulomb's Law</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary phy">The electrostatic force between two point charges is directly proportional to the product of charges and inversely proportional to the square of distance between them.</div>
+          <div class="section-label phy">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">F = kq₁q₂ / r²<div class="formula-label">k = 9×10⁹ N·m²/C² | q in Coulombs | r in metres</div></div>
+            <div class="formula">k = 1 / (4πε₀) | ε₀ = 8.85×10⁻¹² C²/N·m²</div>
+          </div>
+          <div class="section-label phy">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>ALWAYS convert μC to C:</strong> divide by 10⁶. e.g. 3μC = 3×10⁻⁶ C</div>
+            <div class="shortcut"><strong>r² trick:</strong> if distance doubles, force becomes ¼. If distance halves, force becomes 4×.</div>
+          </div>
+          <div class="section-label phy">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>Most common mistake:</strong> Forgetting to square the distance. Always write r² not r.</div>
+            <div class="exam-tip"><strong>Unilorin loves:</strong> Numerical questions with μC charges — practice converting first.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 3 -->
+      <div class="topic-card phy" onclick="toggleTopic(this)">
+        <div class="topic-header phy">
+          <div class="topic-name"><span class="topic-icon">🌐</span> Electric Field</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary phy">Electric field E is the force per unit charge at a point in space. Field lines point from positive to negative charges. Where lines are dense, field is stronger.</div>
+          <div class="section-label phy">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">E = F / q<div class="formula-label">Unit: N/C or V/m</div></div>
+            <div class="formula">E = kQ / r²<div class="formula-label">Field due to point charge Q at distance r</div></div>
+          </div>
+          <div class="section-label phy">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Inside conductor:</strong> E = 0 always. Free charges redistribute to cancel internal field.</div>
+            <div class="shortcut"><strong>Direction rule:</strong> Field lines leave (+) and arrive at (−). Never cross each other.</div>
+          </div>
+          <div class="section-label phy">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>CBT Trap:</strong> "E inside a conductor" — always ZERO. Don't overthink it.</div>
+            <div class="exam-tip"><strong>Superposition:</strong> For multiple charges, calculate E from each and add as vectors.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 4 -->
+      <div class="topic-card phy" onclick="toggleTopic(this)">
+        <div class="topic-header phy">
+          <div class="topic-name"><span class="topic-icon">🔵</span> Gauss's Law</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary phy">The total electric flux through any closed surface equals the total enclosed charge divided by ε₀. The shape of the surface doesn't matter — only what's inside counts.</div>
+          <div class="section-label phy">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">Φ_E = Q_enc / ε₀<div class="formula-label">Φ = Electric flux | Q_enc = total charge inside surface</div></div>
+            <div class="formula">Φ_E = ∮ E · dA = Q_enc / ε₀</div>
+          </div>
+          <div class="section-label phy">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Key insight:</strong> If Q_enc = 0 (empty Gaussian surface), then E = 0 inside. This is why conductors have zero internal field.</div>
+            <div class="shortcut"><strong>Sphere rule:</strong> Outside sphere → E = kQ/r². Inside hollow sphere → E = 0.</div>
+          </div>
+          <div class="section-label phy">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>Most tested:</strong> "What is E inside a conducting sphere?" — ZERO. "What is E outside?" — kQ/r².</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 5 -->
+      <div class="topic-card phy" onclick="toggleTopic(this)">
+        <div class="topic-header phy">
+          <div class="topic-name"><span class="topic-icon">🔌</span> DC Circuits & Ohm's Law</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary phy">Direct current flows in one direction. Ohm's Law relates voltage, current and resistance. Resistors in series add up; in parallel, the reciprocals add.</div>
+          <div class="section-label phy">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">V = IR<div class="formula-label">V=Voltage(V) | I=Current(A) | R=Resistance(Ω)</div></div>
+            <div class="formula">Series: R_total = R₁ + R₂ + R₃</div>
+            <div class="formula">Parallel: 1/R_total = 1/R₁ + 1/R₂ + 1/R₃</div>
+            <div class="formula">P = IV = I²R = V²/R<div class="formula-label">P = Power (Watts)</div></div>
+          </div>
+          <div class="section-label phy">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Series:</strong> Same current everywhere. Voltage splits across resistors.</div>
+            <div class="shortcut"><strong>Parallel:</strong> Same voltage across all. Current splits into branches.</div>
+            <div class="shortcut"><strong>Two parallel resistors:</strong> R = (R₁ × R₂) / (R₁ + R₂)</div>
+          </div>
+          <div class="section-label phy">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>Kirchhoff's Laws:</strong> KCL — current into node = current out. KVL — sum of voltages in loop = 0.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 6 -->
+      <div class="topic-card phy" onclick="toggleTopic(this)">
+        <div class="topic-header phy">
+          <div class="topic-name"><span class="topic-icon">🧲</span> Magnetic Fields & Lorentz Force</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary phy">Moving charges create magnetic fields. A charge moving in a magnetic field experiences the Lorentz force. Magnetic field lines form closed loops — no monopoles exist.</div>
+          <div class="section-label phy">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">F = qv × B = qvB sinθ<div class="formula-label">q=charge | v=velocity | B=magnetic field (Tesla)</div></div>
+            <div class="formula">F = IL × B = BIL sinθ<div class="formula-label">Force on current-carrying conductor</div></div>
+          </div>
+          <div class="section-label phy">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Right-hand rule:</strong> Point fingers in direction of v (or I), curl toward B — thumb points in direction of force.</div>
+            <div class="shortcut"><strong>Maximum force:</strong> when θ = 90° (v ⊥ B). Zero force when θ = 0° (v parallel to B).</div>
+          </div>
+          <div class="section-label phy">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>Unit of B:</strong> Tesla (T) = kg/(A·s²). Don't confuse with Electric field unit N/C.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 7 -->
+      <div class="topic-card phy" onclick="toggleTopic(this)">
+        <div class="topic-header phy">
+          <div class="topic-name"><span class="topic-icon">⚡</span> Faraday's & Lenz's Laws</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary phy">A changing magnetic flux induces an EMF in a conductor. Lenz's Law says the induced current opposes the change that caused it — nature resisting change!</div>
+          <div class="section-label phy">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">EMF = -dΦ/dt<div class="formula-label">EMF induced = rate of change of magnetic flux</div></div>
+            <div class="formula">Φ = BA cosθ<div class="formula-label">Magnetic flux = B × Area × cos(angle)</div></div>
+            <div class="formula">EMF = -N × dΦ/dt<div class="formula-label">For N-turn coil</div></div>
+          </div>
+          <div class="section-label phy">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Lenz's Law memory trick:</strong> "Induced current always FIGHTS the change." If flux increases, induced current creates opposing field.</div>
+            <div class="shortcut"><strong>Transformer ratio:</strong> V₁/V₂ = N₁/N₂ = I₂/I₁</div>
+          </div>
+          <div class="section-label phy">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>The negative sign</strong> in EMF = -dΦ/dt is Lenz's Law in math form. Always explain its meaning.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 8 -->
+      <div class="topic-card phy" onclick="toggleTopic(this)">
+        <div class="topic-header phy">
+          <div class="topic-name"><span class="topic-icon">📡</span> AC Circuits & EM Waves</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary phy">AC current alternates direction. Capacitors and inductors oppose AC differently. Electromagnetic waves are transverse and travel at speed of light — they need no medium.</div>
+          <div class="section-label phy">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">X_C = 1/(2πfC)<div class="formula-label">Capacitive reactance (Ω) — opposes AC</div></div>
+            <div class="formula">X_L = 2πfL<div class="formula-label">Inductive reactance (Ω)</div></div>
+            <div class="formula">Z = √(R² + (X_L - X_C)²)<div class="formula-label">Impedance of RLC circuit</div></div>
+            <div class="formula">c = λf = 3×10⁸ m/s<div class="formula-label">Speed of EM waves in vacuum</div></div>
+          </div>
+          <div class="section-label phy">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Resonance:</strong> occurs when X_L = X_C. At resonance, Z = R (minimum impedance, maximum current).</div>
+            <div class="shortcut"><strong>EM spectrum order:</strong> Radio → Microwave → Infrared → Visible → UV → X-ray → Gamma</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end phy-topics -->
+  </div><!-- end panel-phy -->
+
+  <!-- ═══════════════════════════════════
+       MTH102 PANEL
+  ═══════════════════════════════════ -->
+  <div class="subject-panel" id="panel-mth">
+    <div class="subject-header mth">
+      <div class="subject-icon">📐</div>
+      <div>
+        <div class="subject-title mth">MTH 102 — Elementary Mathematics II</div>
+        <div class="subject-desc">Calculus · Differentiation · Integration · Applications<br>6 Topics · Functions to Volumes</div>
+      </div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill mth" style="width:100%"></div></div>
+    <div class="topics-grid" id="mth-topics">
+
+      <!-- Topic 1 -->
+      <div class="topic-card mth" onclick="toggleTopic(this)">
+        <div class="topic-header mth">
+          <div class="topic-name"><span class="topic-icon">📈</span> Functions, Limits & Continuity</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary mth">A function maps inputs to unique outputs. A limit describes what a function approaches as x approaches a value. Continuity means no breaks, holes, or jumps in the graph.</div>
+          <div class="section-label mth">Key Points</div>
+          <div class="key-points">
+            <div class="kp"><div class="kp-dot mth"></div>lim(x→a) f(x) = L means f(x) gets arbitrarily close to L as x approaches a.</div>
+            <div class="kp"><div class="kp-dot mth"></div>A function is continuous at x=a if: f(a) exists, limit exists, and they are equal.</div>
+            <div class="kp"><div class="kp-dot mth"></div>Left-hand limit = Right-hand limit → limit exists.</div>
+          </div>
+          <div class="section-label mth">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">lim(x→0) sinx/x = 1<div class="formula-label">Standard limit — memorise this!</div></div>
+            <div class="formula">lim(x→∞) (1 + 1/n)ⁿ = e ≈ 2.718</div>
+          </div>
+          <div class="section-label mth">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>0/0 form:</strong> Try L'Hôpital's rule — differentiate top and bottom separately.</div>
+            <div class="exam-tip"><strong>Continuity check:</strong> Always verify all 3 conditions. Missing one = discontinuous.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 2 -->
+      <div class="topic-card mth" onclick="toggleTopic(this)">
+        <div class="topic-header mth">
+          <div class="topic-name"><span class="topic-icon">📉</span> Differentiation</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary mth">The derivative measures the rate of change of a function. It gives the slope of the tangent line at any point. Differentiation is the core skill of calculus.</div>
+          <div class="section-label mth">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">d/dx(xⁿ) = nxⁿ⁻¹<div class="formula-label">Power rule — most used rule</div></div>
+            <div class="formula">d/dx(uv) = u'v + uv'<div class="formula-label">Product rule</div></div>
+            <div class="formula">d/dx(u/v) = (u'v - uv') / v²<div class="formula-label">Quotient rule</div></div>
+            <div class="formula">d/dx[f(g(x))] = f'(g(x)) × g'(x)<div class="formula-label">Chain rule</div></div>
+            <div class="formula">d/dx(sinx) = cosx | d/dx(cosx) = -sinx</div>
+            <div class="formula">d/dx(eˣ) = eˣ | d/dx(ln x) = 1/x</div>
+          </div>
+          <div class="section-label mth">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Power rule memory:</strong> "Bring down the power, reduce by 1." d/dx(x⁵) = 5x⁴</div>
+            <div class="shortcut"><strong>Chain rule trigger:</strong> Any function inside another function needs chain rule.</div>
+          </div>
+          <div class="section-label mth">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>Implicit differentiation:</strong> When y is not isolated — differentiate both sides and collect dy/dx terms.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 3 -->
+      <div class="topic-card mth" onclick="toggleTopic(this)">
+        <div class="topic-header mth">
+          <div class="topic-name"><span class="topic-icon">📊</span> Maxima, Minima & Curve Sketching</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary mth">Critical points occur where f'(x) = 0 or undefined. The second derivative test tells you if it's a maximum, minimum, or inflection point. Curve sketching combines all of this.</div>
+          <div class="section-label mth">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">f'(x) = 0 → Critical point</div>
+            <div class="formula">f''(x) &lt; 0 → Maximum (curve bends down ⌢)</div>
+            <div class="formula">f''(x) &gt; 0 → Minimum (curve bends up ⌣)</div>
+            <div class="formula">f''(x) = 0 → Possible inflection point</div>
+          </div>
+          <div class="section-label mth">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Steps to find extrema:</strong> 1) Find f'(x). 2) Set = 0. 3) Solve for x. 4) Use f''(x) to classify.</div>
+            <div class="shortcut"><strong>First derivative test:</strong> f' changes + to − → Maximum. f' changes − to + → Minimum.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 4 -->
+      <div class="topic-card mth" onclick="toggleTopic(this)">
+        <div class="topic-header mth">
+          <div class="topic-name"><span class="topic-icon">∫</span> Integration (Antiderivatives)</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary mth">Integration is the reverse of differentiation. The indefinite integral gives a family of functions. Always add the constant of integration C for indefinite integrals.</div>
+          <div class="section-label mth">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">∫xⁿ dx = xⁿ⁺¹/(n+1) + C<div class="formula-label">Power rule for integration (n ≠ -1)</div></div>
+            <div class="formula">∫eˣ dx = eˣ + C</div>
+            <div class="formula">∫sinx dx = -cosx + C</div>
+            <div class="formula">∫cosx dx = sinx + C</div>
+            <div class="formula">∫(1/x) dx = ln|x| + C</div>
+          </div>
+          <div class="section-label mth">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Integration by parts:</strong> ∫u dv = uv - ∫v du. Use LIATE to choose u: Logarithm, Inverse trig, Algebraic, Trig, Exponential.</div>
+            <div class="shortcut"><strong>Substitution:</strong> If you see f(g(x))·g'(x), let u = g(x).</div>
+          </div>
+          <div class="section-label mth">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>Never forget +C</strong> for indefinite integrals. Lecturers deduct marks for this.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 5 -->
+      <div class="topic-card mth" onclick="toggleTopic(this)">
+        <div class="topic-header mth">
+          <div class="topic-name"><span class="topic-icon">📏</span> Definite Integrals</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary mth">Definite integrals have upper and lower limits. They give a specific numerical answer — no +C needed. They represent the area under a curve between two points.</div>
+          <div class="section-label mth">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">∫[a to b] f(x)dx = F(b) - F(a)<div class="formula-label">Fundamental Theorem of Calculus</div></div>
+          </div>
+          <div class="section-label mth">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Steps:</strong> 1) Integrate normally. 2) Substitute upper limit. 3) Subtract lower limit substitution. 4) Simplify.</div>
+            <div class="shortcut"><strong>Even function:</strong> ∫[-a to a] f(x)dx = 2∫[0 to a]. Odd function: ∫[-a to a] = 0.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 6 -->
+      <div class="topic-card mth" onclick="toggleTopic(this)">
+        <div class="topic-header mth">
+          <div class="topic-name"><span class="topic-icon">🏔️</span> Area & Volume Applications</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary mth">Integration calculates areas between curves and volumes of solids of revolution. Area between two curves = integral of (top − bottom). Volume uses the disk or shell method.</div>
+          <div class="section-label mth">Formulas</div>
+          <div class="formula-wrap">
+            <div class="formula">Area = ∫[a to b] [f(x) - g(x)] dx<div class="formula-label">Area between curves f(x) above g(x)</div></div>
+            <div class="formula">Volume = π∫[a to b] [f(x)]² dx<div class="formula-label">Disk method — revolution about x-axis</div></div>
+          </div>
+          <div class="section-label mth">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>Find intersections first:</strong> Set f(x) = g(x) to find the limits a and b before integrating.</div>
+            <div class="exam-tip"><strong>Negative areas:</strong> Area is always positive — take absolute value if curve dips below x-axis.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end panel-mth -->
+
+  <!-- ═══════════════════════════════════
+       CHM102 PANEL
+  ═══════════════════════════════════ -->
+  <div class="subject-panel" id="panel-chm">
+    <div class="subject-header chm">
+      <div class="subject-icon">🧪</div>
+      <div>
+        <div class="subject-title chm">CHM 102 — General Chemistry II</div>
+        <div class="subject-desc">Organic Chemistry · Functional Groups · Metals · Nomenclature<br>8 Topics · Alkanes to Transition Metals</div>
+      </div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill chm" style="width:100%"></div></div>
+    <div class="topics-grid" id="chm-topics">
+
+      <!-- Topic 1 -->
+      <div class="topic-card chm" onclick="toggleTopic(this)">
+        <div class="topic-header chm">
+          <div class="topic-name"><span class="topic-icon">📜</span> History & Basics of Organic Chemistry</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary chm">Organic chemistry is the study of carbon compounds. Once thought to only come from living things (vitalism), Wöhler's 1828 synthesis of urea from inorganic materials changed everything.</div>
+          <div class="section-label chm">Key Points</div>
+          <div class="key-points">
+            <div class="kp"><div class="kp-dot chm"></div>Carbon forms 4 bonds — enables enormous molecular variety.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Organic compounds contain C-H bonds primarily.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Vital force theory disproved by Wöhler (1828).</div>
+            <div class="kp"><div class="kp-dot chm"></div>Carbon hybridisation: sp³ (alkanes), sp² (alkenes), sp (alkynes).</div>
+          </div>
+          <div class="section-label chm">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>Unilorin favourite:</strong> "Who disproved vitalism?" — Friedrich Wöhler, 1828, urea synthesis.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 2 -->
+      <div class="topic-card chm" onclick="toggleTopic(this)">
+        <div class="topic-header chm">
+          <div class="topic-name"><span class="topic-icon">⚽</span> Fullerenes & Nanostructures</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary chm">Fullerenes are the fourth allotrope of carbon (after diamond, graphite, amorphous carbon). C₆₀ (Buckminsterfullerene) looks like a football — 60 carbon atoms in pentagons and hexagons.</div>
+          <div class="section-label chm">Key Points</div>
+          <div class="key-points">
+            <div class="kp"><div class="kp-dot chm"></div>4 allotropes of carbon: Diamond, Graphite, Amorphous carbon, Fullerenes.</div>
+            <div class="kp"><div class="kp-dot chm"></div>C₆₀ = Buckminsterfullerene (Buckyball) — discovered 1985 by Curl, Smalley, Kroto.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Carbon nanotubes = rolled graphene sheets. Extremely strong, electrically conductive.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Applications: drug delivery, electronics, materials science.</div>
+          </div>
+          <div class="section-label chm">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>Very popular in Unilorin CBT:</strong> "How many atoms in Buckminsterfullerene?" — 60 carbon atoms.</div>
+            <div class="exam-tip"><strong>Nobel Prize 1996:</strong> Curl, Smalley, Kroto — for discovering fullerenes.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 3 -->
+      <div class="topic-card chm" onclick="toggleTopic(this)">
+        <div class="topic-header chm">
+          <div class="topic-name"><span class="topic-icon">🏷️</span> IUPAC Nomenclature</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary chm">IUPAC naming gives every organic compound a systematic, universally understood name based on structure. Master the prefixes and you can name any compound.</div>
+          <div class="section-label chm">Key Points</div>
+          <div class="key-points">
+            <div class="kp"><div class="kp-dot chm"></div>Prefixes: Meth(1), Eth(2), Prop(3), But(4), Pent(5), Hex(6), Hept(7), Oct(8), Non(9), Dec(10).</div>
+            <div class="kp"><div class="kp-dot chm"></div>Suffixes: -ane (single), -ene (double bond), -yne (triple bond), -ol (alcohol), -al (aldehyde), -one (ketone), -oic acid (carboxylic acid).</div>
+            <div class="kp"><div class="kp-dot chm"></div>Number the chain from the end closest to the substituent/functional group.</div>
+          </div>
+          <div class="section-label chm">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Memory trick for prefixes:</strong> "My Enormous Purple Butterfly Pretty Happily Hops On New Doors" = Meth, Eth, Prop, But, Pent, Hex, Hept, Oct, Non, Dec</div>
+          </div>
+          <div class="section-label chm">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>Always find longest chain first.</strong> Then number from end nearest to branch/functional group.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 4 -->
+      <div class="topic-card chm" onclick="toggleTopic(this)">
+        <div class="topic-header chm">
+          <div class="topic-name"><span class="topic-icon">⛓️</span> Alkanes, Alkenes & Alkynes</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary chm">Hydrocarbons — compounds of only carbon and hydrogen. Alkanes are saturated (single bonds only). Alkenes have double bonds. Alkynes have triple bonds. Reactivity increases with unsaturation.</div>
+          <div class="section-label chm">Key Points</div>
+          <div class="key-points">
+            <div class="kp"><div class="kp-dot chm"></div>Alkanes: CₙH₂ₙ₊₂ formula. Undergo substitution reactions.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Alkenes: CₙH₂ₙ formula. Undergo addition reactions. Most reactive.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Alkynes: CₙH₂ₙ₋₂ formula. Triple bond — very reactive.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Markovnikov's rule: in addition, H adds to carbon with more H atoms.</div>
+          </div>
+          <div class="section-label chm">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Reactivity order:</strong> Alkynes > Alkenes > Alkanes (more π bonds = more reactive)</div>
+            <div class="shortcut"><strong>Geometric isomerism:</strong> Only in alkenes (cis/trans) due to restricted rotation around double bond.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 5 -->
+      <div class="topic-card chm" onclick="toggleTopic(this)">
+        <div class="topic-header chm">
+          <div class="topic-name"><span class="topic-icon">🍺</span> Alcohols, Ethers & Amines</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary chm">Functional groups define chemical behaviour. Alcohols (-OH), ethers (R-O-R), and amines (-NH₂) are key families with distinct properties and reactions.</div>
+          <div class="section-label chm">Key Points</div>
+          <div class="key-points">
+            <div class="kp"><div class="kp-dot chm"></div>Alcohols: -OH group. Primary (1°), Secondary (2°), Tertiary (3°) based on how many carbons attached to C-OH.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Ethers: R-O-R'. Relatively unreactive. Diethyl ether = anaesthetic.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Amines: -NH₂ group. Basic character — accept protons.</div>
+          </div>
+          <div class="section-label chm">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>Alcohol oxidation:</strong> 1° → Aldehyde → Carboxylic acid. 2° → Ketone. 3° → Doesn't oxidise easily.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 6 -->
+      <div class="topic-card chm" onclick="toggleTopic(this)">
+        <div class="topic-header chm">
+          <div class="topic-name"><span class="topic-icon">🔬</span> Aldehydes, Ketones & Carboxylic Acids</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary chm">Carbonyl compounds (C=O) include aldehydes, ketones, and carboxylic acids. They differ in where the C=O group sits and what's attached to it.</div>
+          <div class="section-label chm">Key Points</div>
+          <div class="key-points">
+            <div class="kp"><div class="kp-dot chm"></div>Aldehyde: -CHO at end of chain. e.g. Methanal (formaldehyde), Ethanal.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Ketone: C=O in middle of chain. e.g. Propanone (acetone).</div>
+            <div class="kp"><div class="kp-dot chm"></div>Carboxylic acid: -COOH group. Weak acids. e.g. Ethanoic acid (vinegar).</div>
+          </div>
+          <div class="section-label chm">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Tollens test:</strong> Aldehydes give silver mirror. Ketones don't react — used to distinguish them.</div>
+            <div class="shortcut"><strong>Fehling's test:</strong> Aldehydes give brick-red precipitate. Ketones — no reaction.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 7 -->
+      <div class="topic-card chm" onclick="toggleTopic(this)">
+        <div class="topic-header chm">
+          <div class="topic-name"><span class="topic-icon">🏗️</span> Group IA, IIA & IVA Elements</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary chm">Comparative chemistry of the s-block (IA, IIA) and Group IVA elements. Properties change predictably down each group.</div>
+          <div class="section-label chm">Key Points</div>
+          <div class="key-points">
+            <div class="kp"><div class="kp-dot chm"></div>Group IA (Alkali metals): Li, Na, K, Rb, Cs. +1 charge. React vigorously with water.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Group IIA (Alkaline earth): Be, Mg, Ca, Sr, Ba. +2 charge. Less reactive than IA.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Group IVA: C, Si, Ge, Sn, Pb. Goes from nonmetal to metal down the group.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Down IA/IIA: Atomic radius increases, ionisation energy decreases, reactivity increases.</div>
+          </div>
+          <div class="section-label chm">⚡ Exam Tips</div>
+          <div class="exam-tips">
+            <div class="exam-tip"><strong>Unilorin loves:</strong> "Which Group IA metal is least reactive?" — Lithium (Li) is least reactive in Group IA.</div>
+            <div class="exam-tip"><strong>Flame colours:</strong> Li=red, Na=yellow, K=lilac, Ca=brick red, Ba=green.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 8 -->
+      <div class="topic-card chm" onclick="toggleTopic(this)">
+        <div class="topic-header chm">
+          <div class="topic-name"><span class="topic-icon">🌀</span> Stereochemistry & Isomerism</div>
+          <span class="topic-chevron">▼</span>
+        </div>
+        <div class="topic-body">
+          <div class="lesson-summary chm">Isomers have the same molecular formula but different structures or arrangements. Stereoisomers have the same connectivity but different spatial arrangements.</div>
+          <div class="section-label chm">Key Points</div>
+          <div class="key-points">
+            <div class="kp"><div class="kp-dot chm"></div>Structural isomers: different connectivity. e.g. Butane vs 2-methylpropane.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Geometric isomers (cis/trans): only in alkenes and cyclic compounds.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Optical isomers (enantiomers): mirror images, not superimposable. Have chiral centre.</div>
+            <div class="kp"><div class="kp-dot chm"></div>Chiral carbon: carbon bonded to 4 different groups.</div>
+          </div>
+          <div class="section-label chm">🚀 Shortcuts</div>
+          <div class="shortcuts">
+            <div class="shortcut"><strong>Cis:</strong> same groups on same side of double bond. <strong>Trans:</strong> same groups on opposite sides.</div>
+            <div class="shortcut"><strong>R/S configuration:</strong> Arrange groups by priority (atomic number). Clockwise = R. Anticlockwise = S.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end panel-chm -->
+
+</div><!-- end qf-main -->
+
+<!-- FOOTER CTA -->
+<div class="qf-footer">
+  <div class="qf-footer-text">Ready to test your knowledge?</div>
+  <a href="https://exammasterseries.github.io/exammaster/index.html" class="btn-gold">⚡ ENTER THE BATTLE →</a>
+  <br><br>
+  <p style="font-size:11px;color:var(--muted);font-family:'Oswald',sans-serif;letter-spacing:2px;margin-top:12px;">© 2026 ExamMaster Series · Chaksman Group</p>
+</div>
+
+<script>
+function switchSubject(subj, el) {
+  // Update tabs
+  document.querySelectorAll('.stab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  // Update panels
+  document.querySelectorAll('.subject-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + subj).classList.add('active');
+  // Clear search
+  document.getElementById('searchInput').value = '';
+}
+
+function toggleTopic(card) {
+  card.classList.toggle('open');
+}
+
+function searchTopics(query) {
+  query = query.toLowerCase().trim();
+  const allCards = document.querySelectorAll('.topic-card');
+
+  if (!query) {
+    allCards.forEach(c => c.style.display = '');
+    return;
+  }
+
+  // Show all panels when searching
+  document.querySelectorAll('.subject-panel').forEach(p => p.classList.add('active'));
+  document.querySelectorAll('.stab').forEach(t => t.classList.remove('active'));
+
+  allCards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    if (text.includes(query)) {
+      card.style.display = '';
+      card.classList.add('open');
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Open first card of each subject by default
+document.querySelectorAll('.topics-grid').forEach(grid => {
+  const first = grid.querySelector('.topic-card');
+  if (first) first.classList.add('open');
+});
+function toggleNav(){
+  document.getElementById('navMobile').classList.toggle('open');
+}
+// Close mobile nav when clicking outside
+document.addEventListener('click', function(e){
+  const nav = document.getElementById('navMobile');
+  const btn = document.getElementById('navHamburger');
+  if(nav && btn && !nav.contains(e.target) && !btn.contains(e.target)){
+    nav.classList.remove('open');
+  }
+});
+
+</script>
+</body>
+</html>

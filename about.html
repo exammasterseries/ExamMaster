@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExamMaster — About & Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#06060a;color:#f0f0f8;font-family:'Inter',sans-serif;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+:root{--gold:#f5c518;--gold2:#e8a000;--navy:#1a3a6b;--red:#e8213a;--teal:#00d4aa;--black:#06060a;--dark:#0d0d14;--card:#13131e;--card2:#1a1a2a;--border:#252535;--muted:#7070a0;--white:#f0f0f8;}
+/* NAV */
+nav{background:rgba(6,6,10,.96);border-bottom:1px solid rgba(245,197,24,.18);padding:0 24px;position:sticky;top:0;z-index:200;backdrop-filter:blur(14px);}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:62px;}
+.nav-brand{display:flex;align-items:center;gap:11px;}
+.nav-logo-wrap{width:42px;height:42px;border-radius:9px;overflow:hidden;border:2px solid rgba(245,197,24,.3);background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-logo-wrap img{width:38px;height:38px;object-fit:contain;}
+.brand-name{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:2px;line-height:1;}
+.brand-name span{color:var(--gold);}
+.brand-sub{font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
+.nav-links{display:flex;gap:4px;}
+.nav-links a{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:1px;color:var(--muted);padding:7px 13px;border-radius:7px;transition:all .2s;text-transform:uppercase;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(255,255,255,.07);}
+.nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Oswald',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;padding:9px 20px;border-radius:8px;transition:all .2s;text-transform:uppercase;display:inline-block;cursor:pointer;border:none;}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(245,197,24,.45);}
+/* HERO */
+.hero{padding:80px 24px 60px;text-align:center;
+background:linear-gradient(rgba(6,6,10,.74),rgba(6,6,10,.84)),url('https://i.postimg.cc/bvScYVHH/download-id-1Ap8y-Bz9TZRn2Qg-F6gchl8fp03Usy557P-export-view.jpg') center/cover no-repeat;
+border-bottom:1px solid rgba(245,197,24,.08);position:relative;overflow:hidden;min-height:50vh;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(245,197,24,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(245,197,24,.03) 1px,transparent 1px);background-size:55px 55px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black,transparent);pointer-events:none;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.25);color:var(--teal);font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:3px;padding:6px 16px;border-radius:99px;margin-bottom:22px;position:relative;z-index:1;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,9vw,90px);letter-spacing:3px;margin-bottom:10px;line-height:.95;position:relative;z-index:1;}
+.hero h1 span{background:linear-gradient(135deg,var(--gold),#fff176);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:15px;color:rgba(240,240,248,.55);max-width:640px;margin:0 auto 18px;line-height:1.7;position:relative;z-index:1;}
+.hero-power{display:inline-flex;align-items:center;gap:10px;background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.2);border-radius:99px;padding:10px 22px;font-family:'Oswald',sans-serif;font-size:14px;color:var(--gold);letter-spacing:2px;font-weight:600;position:relative;z-index:1;}
+/* SECTIONS */
+.diff-section{padding:80px 24px;max-width:1100px;margin:0 auto;}
+.sec-label{font-family:'Oswald',sans-serif;font-size:10px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:10px;text-align:center;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,5vw,56px);letter-spacing:2px;text-align:center;margin-bottom:12px;line-height:1.05;}
+.sec-title span{color:var(--gold);}
+.sec-sub{text-align:center;font-size:13px;color:var(--muted);max-width:500px;margin:0 auto 48px;line-height:1.7;}
+.diff-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:700px){.diff-layout{grid-template-columns:1fr;}}
+.diff-point{display:flex;align-items:flex-start;gap:16px;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;transition:border-color .2s,transform .2s;}
+.diff-point:hover{border-color:rgba(245,197,24,.25);transform:translateX(4px);}
+.diff-icon{font-size:24px;width:44px;height:44px;min-width:44px;background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.dt{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;margin-bottom:3px;}
+.dd{font-size:12px;color:var(--muted);line-height:1.55;}
+.diff-right{background:linear-gradient(135deg,rgba(26,58,107,.3),rgba(245,197,24,.06));border:1px solid rgba(245,197,24,.15);border-radius:16px;padding:32px 28px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.diff-right::before{content:'🏆';position:absolute;bottom:-20px;right:-10px;font-size:120px;opacity:.06;pointer-events:none;}
+.big-quote{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,4vw,40px);letter-spacing:2px;line-height:1.15;margin-bottom:24px;}
+.big-quote span{color:var(--gold);}
+.diff-stat{display:flex;gap:14px;flex-wrap:wrap;}
+.ds{flex:1;min-width:90px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:9px;padding:14px 12px;text-align:center;}
+.ds .dn{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--gold);}
+.ds .dl{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+/* GAIN */
+.gain-section{padding:80px 24px;background:linear-gradient(180deg,transparent,rgba(26,58,107,.12),transparent);}
+.gain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:1100px;margin:0 auto;}
+.gain-card{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:26px 22px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;text-align:center;}
+.gain-card:hover{border-color:rgba(245,197,24,.3);transform:translateY(-4px);}
+.gain-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.gain-icon{font-size:36px;margin-bottom:14px;}
+.gain-title{font-family:'Oswald',sans-serif;font-size:17px;font-weight:600;margin-bottom:8px;}
+.gain-desc{font-size:12px;color:var(--muted);line-height:1.65;}
+/* MISSION */
+.mission{padding:56px 24px;text-align:center;border-top:1px solid rgba(245,197,24,.08);border-bottom:1px solid rgba(245,197,24,.08);background:rgba(245,197,24,.03);}
+.m-text{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,4vw,40px);letter-spacing:2px;max-width:900px;margin:0 auto;line-height:1.2;color:rgba(240,240,248,.6);}
+.m-text strong{color:var(--white);}
+.m-text span{color:var(--gold);}
+/* CONTACT */
+.contact-section{padding:80px 24px;max-width:900px;margin:0 auto;}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:680px){.contact-layout{grid-template-columns:1fr;}}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px 28px;}
+.contact-card h3{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:8px;}
+.contact-card .intro{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:24px;}
+.ci{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);}
+.ci:last-child{border-bottom:none;}
+.ci-icon{width:42px;height:42px;min-width:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.ci-email-bg{background:rgba(26,58,107,.3);border:1px solid rgba(26,58,107,.5);}
+.ci-wa-bg{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);}
+.ci-tg-bg{background:rgba(77,159,255,.1);border:1px solid rgba(77,159,255,.2);}
+.ci-gold-bg{background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.2);}
+.ci-label{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;font-family:'Oswald',sans-serif;margin-bottom:3px;}
+.ci-value{font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;color:var(--white);}
+.ci-link{color:var(--gold);}
+.fg{margin-bottom:16px;}
+.fg label{display:block;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-family:'Oswald',sans-serif;}
+.fg input,.fg textarea,.fg select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:11px 13px;color:var(--white);font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s;resize:vertical;}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted);}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,197,24,.1);}
+.fg textarea{min-height:100px;}
+.fg select option{background:#1a1a2a;color:var(--white);}
+.send-btn{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:9px;padding:13px;font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:all .2s;text-transform:uppercase;}
+.send-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,197,24,.4);}
+.form-success{display:none;text-align:center;padding:20px;font-family:'Oswald',sans-serif;font-size:16px;color:var(--teal);}
+/* FAQ */
+.faq-section{padding:0 24px 80px;max-width:900px;margin:0 auto;}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden;}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;cursor:pointer;font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;transition:background .15s;gap:12px;}
+.faq-q:hover{background:rgba(245,197,24,.04);}
+.faq-tog{font-family:'Oswald',sans-serif;font-size:11px;color:var(--gold);min-width:24px;text-align:center;transition:transform .3s;}
+.faq-a{display:none;padding:0 18px 16px;font-size:13px;color:var(--muted);line-height:1.7;border-top:1px solid var(--border);}
+.faq-a.open{display:block;}
+.faq-tog.open{transform:rotate(180deg);}
+/* FINAL CTA */
+.final-cta{padding:80px 24px;text-align:center;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(232,33,58,.07),transparent 70%);border-top:1px solid var(--border);}
+.fc-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,70px);letter-spacing:3px;margin-bottom:14px;line-height:1;}
+.fc-title span{background:linear-gradient(135deg,var(--gold),#fff176);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;letter-spacing:2px;padding:17px 40px;border-radius:10px;transition:all .2s;text-transform:uppercase;box-shadow:0 4px 28px rgba(245,197,24,.35);display:inline-block;cursor:pointer;border:none;}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(245,197,24,.55);}
+/* SOCIAL */
+.social-bar{background:#0d0d14;border-top:1px solid #252535;padding:28px 24px 22px;text-align:center;}
+.social-label{font-family:'Oswald',sans-serif;font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;}
+.social-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
+.social-btn{display:flex;align-items:center;gap:9px;border-radius:10px;padding:11px 22px;text-decoration:none;transition:all .2s;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;color:#f0f0f8;}
+.social-btn:hover{transform:translateY(-2px);}
+.swa{background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.28);}
+.swa:hover{box-shadow:0 6px 20px rgba(37,211,102,.3);}
+.stg{background:rgba(0,136,204,.12);border:1px solid rgba(0,136,204,.28);}
+.stg:hover{box-shadow:0 6px 20px rgba(0,136,204,.3);}
+.sem{background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.22);}
+.sem:hover{box-shadow:0 6px 20px rgba(245,197,24,.3);}
+.social-copy{font-size:10px;color:rgba(112,112,160,.45);font-family:'Oswald',sans-serif;letter-spacing:2px;text-transform:uppercase;}
+/* FOOTER */
+footer{padding:28px 24px;border-top:1px solid var(--border);text-align:center;}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;margin-bottom:6px;}
+.footer-brand span{color:var(--gold);}
+.footer-terms{font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:8px;}
+.footer-terms a{color:var(--gold);cursor:pointer;text-decoration:underline;}
+.footer-bottom{font-size:10px;color:rgba(112,112,160,.4);letter-spacing:2px;text-transform:uppercase;border-top:1px solid var(--border);padding-top:12px;margin-top:12px;}
+/* MODAL — TERMS */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;overflow-y:auto;backdrop-filter:blur(6px);padding:20px;}
+.modal-box{max-width:680px;margin:40px auto;background:#13131e;border:1px solid rgba(245,197,24,.25);border-radius:16px;padding:36px 28px;position:relative;}
+.modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:#f0f0f8;font-size:16px;width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:monospace;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;}
+.modal-sub{font-family:'Oswald',sans-serif;font-size:10px;color:var(--muted);letter-spacing:3px;margin-bottom:20px;text-transform:uppercase;}
+.modal-body{font-size:13px;color:#a0a0c0;line-height:1.85;font-family:'Inter',sans-serif;}
+.modal-body p{margin-bottom:13px;}
+.modal-body strong{color:#f0f0f8;}
+.modal-footer{margin-top:24px;text-align:center;}
+.modal-accept{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;padding:13px 32px;border-radius:9px;cursor:pointer;text-transform:uppercase;}
+/* PAYMENT MODAL */
+#payModal .modal-box{max-width:440px;}
+.pay-field{margin-bottom:18px;}
+.pay-label{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:7px;display:block;}
+.pay-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(245,197,24,.2);border-radius:8px;padding:12px 14px;font-size:14px;color:var(--white);font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;}
+.pay-input:focus{border-color:rgba(245,197,24,.55);}
+.pay-input::placeholder{color:var(--muted);}
+.pay-amount-row{display:flex;align-items:center;gap:10px;background:rgba(245,197,24,.06);border:1px solid rgba(245,197,24,.15);border-radius:8px;padding:12px 16px;margin-bottom:20px;}
+.pay-amount-icon{font-size:20px;}
+.pay-amount-text{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;color:var(--gold);}
+.pay-amount-sub{font-size:11px;color:var(--muted);font-family:'Inter',sans-serif;}
+.pay-error{color:var(--red);font-size:12px;margin-top:6px;display:none;font-family:'Inter',sans-serif;}
+.pay-btn{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;font-family:'Oswald',sans-serif;font-size:15px;font-weight:700;letter-spacing:2px;padding:15px;border-radius:9px;cursor:pointer;text-transform:uppercase;transition:all .2s;margin-top:4px;}
+.pay-btn:hover{box-shadow:0 6px 24px rgba(245,197,24,.45);}
+.pay-btn:disabled{opacity:.6;cursor:not-allowed;}
+.pay-secure{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;font-size:11px;color:var(--muted);font-family:'Oswald',sans-serif;letter-spacing:1px;}
+.nav-hamburger{display:none;background:transparent;border:1px solid var(--border);color:var(--white);font-size:18px;width:38px;height:38px;border-radius:8px;cursor:pointer;}
+.nav-mobile{display:none;flex-direction:column;background:rgba(6,6,10,.98);border-top:1px solid var(--border);padding:12px 24px 16px;}
+.nav-mobile a{font-family:'Oswald',sans-serif;font-size:14px;letter-spacing:1px;color:var(--muted);padding:12px 0;border-bottom:1px solid var(--border);text-transform:uppercase;text-decoration:none;}
+.nav-mobile a:last-child{border-bottom:none;}
+.nav-mobile a:hover{color:var(--white);}
+.nav-mobile.open{display:flex;}
+@media(max-width:640px){
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;align-items:center;justify-content:center;}
+  .nav-cta{font-size:11px;padding:7px 14px;letter-spacing:1px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TERMS MODAL -->
+<div class="modal-overlay" id="termsModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('termsModal')">✕</button>
+    <div class="modal-title">Terms &amp; Conditions ⚡</div>
+    <div class="modal-sub">ExamMaster Series · Chaksman Group · 2026</div>
+    <div class="modal-body">
+      <p><strong>1. Eligibility</strong><br>ExamMaster is open to all registered students of accredited institutions. Participants must provide accurate personal information. False information leads to immediate disqualification.</p>
+      <p><strong>2. Payment &amp; Access</strong><br>Access requires a one-time payment via Paystack. Payments are non-refundable once access is granted. Ensure all details are correct before completing payment.</p>
+      <p><strong>3. Fair Play</strong><br>All quiz attempts must be your own. Sharing answers, colluding with others, or using external assistance during timed battles is strictly prohibited and results in permanent disqualification.</p>
+      <p><strong>4. Leaderboard &amp; Scoring</strong><br>Only first-attempt scores count toward official leaderboard rankings. Retry attempts are for learning only. ExamMaster reserves the right to verify scores and disqualify suspicious activity.</p>
+      <p><strong>5. Rewards</strong><br>Rewards are distributed at the sole discretion of Chaksman Group. Reward structures may be modified with notice. Rewards are non-transferable unless stated otherwise.</p>
+      <p><strong>6. Privacy</strong><br>Your personal information is collected solely to manage your account and leaderboard participation. We do not sell or share your data with third parties without consent.</p>
+      <p><strong>7. Conduct</strong><br>Participants must behave respectfully in all ExamMaster community spaces including Telegram and WhatsApp groups. Harassment or abusive behaviour results in immediate removal.</p>
+      <p style="margin-bottom:0;"><strong>8. Updates</strong><br>Chaksman Group reserves the right to update these terms at any time. Continued participation after updates constitutes acceptance of the revised terms.</p>
+    </div>
+    <div class="modal-footer"><button class="modal-accept" onclick="closeModal('termsModal')">✓ I AGREE — Close</button></div>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-overlay" id="payModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('payModal')">✕</button>
+    <div class="modal-title">Secure Your Spot ⚡</div>
+    <div class="modal-sub">ExamMaster · One-time Access · Season 2026</div>
+    <div class="pay-amount-row">
+      <div class="pay-amount-icon">💳</div>
+      <div>
+        <div class="pay-amount-text">₦1,600 — One-time Access</div>
+        <div class="pay-amount-sub">PHY102 · CHM102 · MTH102 Battle System</div>
+      </div>
+    </div>
+    <div class="pay-field">
+      <label class="pay-label" for="payName">Full Name</label>
+      <input class="pay-input" id="payName" type="text" placeholder="e.g. Amaka Johnson" autocomplete="name">
+      <div class="pay-error" id="nameErr">Please enter your name.</div>
+    </div>
+    <div class="pay-field">
+      <label class="pay-label" for="payEmail">Email Address</label>
+      <input class="pay-input" id="payEmail" type="email" placeholder="e.g. amaka@gmail.com" autocomplete="email">
+      <div class="pay-error" id="emailErr">Please enter a valid email address.</div>
+    </div>
+    <button class="pay-btn" id="payNowBtn" onclick="launchPaystack()">🏆 PAY ₦1,600 — GET ACCESS</button>
+    <div class="pay-secure">🔒 Secured by Paystack · SSL Encrypted</div>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <div class="nav-logo-wrap">
+        <img src="https://raw.githubusercontent.com/exammasterseries/exammaster/main/image-5.jpg" alt="ExamMaster">
+      </div>
+      <div>
+        <div class="brand-name">Exam<span>Master</span> ⚡</div>
+      </div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="home.html">🏠 Home</a>
+      <a href="leaderboard.html">🏆 Leaderboard</a>
+      <a href="quickfire.html">🚀 Lessons</a>
+      <a href="about.html" class="active">💡 About</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="nav-hamburger" id="navHamburger" onclick="toggleNav()">☰</button>
+      <a href="home.html" class="nav-cta">← Home</a>
+    </div>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="home.html">🏠 Home</a>
+    <a href="leaderboard.html">🏆 Leaderboard</a>
+    <a href="quickfire.html">🚀 Lessons</a>
+    <a href="about.html" class="active">💡 About</a>
+  </div>
+</nav>
+  
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">⚡ About ExamMaster</div>
+  <h1>ABOUT<br><span>EXAMMASTER ⚡</span></h1>
+  <p class="hero-sub">ExamMaster is a competitive learning system designed to help students master PHY102, CHM102, and MTH102 through daily battles, instant scoring, and leaderboard ranking.</p>
+  <div class="hero-power">⚡ Learn faster. Compete harder. Rank higher.</div>
+</section>
+
+<!-- WHY EXAMMASTER -->
+<div class="diff-section">
+  <div class="sec-label">Our Edge</div>
+  <div class="sec-title">WHY <span>EXAMMASTER</span>?</div>
+  <p class="sec-sub">You're not joining another tutorial platform. You're entering a battle system built for students who want to win — in the exam hall and on the leaderboard.</p>
+  <div class="diff-layout">
+    <div>
+      <div class="diff-point"><div class="diff-icon">⚡</div><div><div class="dt">Not just studying — you compete</div><div class="dd">Every session is a battle against time and other students. Passive studying doesn't build champions. Competition does.</div></div></div>
+      <div class="diff-point"><div class="diff-icon">🏆</div><div><div class="dt">Real-time leaderboard ranking</div><div class="dd">Your score is public. Your rank is live. Every correct answer moves you up — or someone else overtakes you.</div></div></div>
+      <div class="diff-point"><div class="diff-icon">📚</div><div><div class="dt">Focused 102 course system — PHY, CHM, MTH</div><div class="dd">No distractions. ExamMaster is laser-focused on the three courses that define your 100-level success.</div></div></div>
+      <div class="diff-point"><div class="diff-icon">🎯</div><div><div class="dt">Daily challenges to keep you consistent</div><div class="dd">Consistency beats cramming every time. Daily battles force the habit. Show up every day, and your brain builds the patterns that matter.</div></div></div>
+      <div class="diff-point"><div class="diff-icon">🚀</div><div><div class="dt">Built for serious students only</div><div class="dd">ExamMaster isn't for everyone. If you want easy, go elsewhere. If you want results, you're in the right place.</div></div></div>
+    </div>
+    <div class="diff-right">
+      <div class="big-quote">"THE ONLY <span>PLATFORM</span> WHERE YOUR GRADE IS A BATTLE SCORE."</div>
+      <div class="diff-stat">
+        <div class="ds"><div class="dn">3</div><div class="dl">Subjects</div></div>
+        <div class="ds"><div class="dn">25+</div><div class="dl">Qs/Day</div></div>
+        <div class="ds"><div class="dn">3500+</div><div class="dl">Max Pts</div></div>
+        <div class="ds"><div class="dn">🏆</div><div class="dl">Prize</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT YOU GAIN -->
+<div class="gain-section">
+  <div style="max-width:1100px;margin:0 auto;"><div class="sec-label">The Benefits</div><div class="sec-title" style="text-align:center;">WHAT YOU <span>GAIN</span></div></div>
+  <div class="gain-grid">
+    <div class="gain-card"><div class="gain-icon">📈</div><div class="gain-title">Speed &amp; Accuracy</div><div class="gain-desc">Timed battles train your brain to process questions faster and select answers with precision. Your exam performance will reflect it.</div></div>
+    <div class="gain-card"><div class="gain-icon">🧠</div><div class="gain-title">Deep Understanding</div><div class="gain-desc">Micro-lessons before each question set ensure you genuinely understand the concept — not just memorise it. Real learning, not guessing.</div></div>
+    <div class="gain-card"><div class="gain-icon">🏆</div><div class="gain-title">Competitive Advantage</div><div class="gain-desc">While others cram the night before, you've been consistently building a winning edge for weeks. The leaderboard doesn't lie.</div></div>
+    <div class="gain-card"><div class="gain-icon">🎁</div><div class="gain-title">Rewards &amp; Recognition</div><div class="gain-desc">Top performers earn real rewards, community recognition, and champion spotlights. Your hard work gets visible results.</div></div>
+  </div>
+</div>
+
+<!-- MISSION -->
+<div class="mission">
+  <p class="m-text"><strong>ExamMaster was built on one truth:</strong> <span>students who compete</span> perform better than students who just study. <strong>We built the arena. You bring the ambition.</strong></p>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-section">
+  <div class="sec-label">Reach Us</div>
+  <div class="sec-title" style="text-align:center;margin-bottom:36px;">CONTACT <span>US</span></div>
+  <div class="contact-layout">
+    <div class="contact-card">
+      <h3>Get In Touch ⚡</h3>
+      <p class="intro">For questions, support, access issues, or partnership inquiries — reach us through any channel below. We respond fast.</p>
+      <div class="ci"><div class="ci-icon ci-email-bg">📩</div><div><div class="ci-label">Email</div><div class="ci-value"><a href="mailto:exammasterseries@gmail.com" class="ci-link">exammasterseries@gmail.com</a></div></div></div>
+      <div class="ci"><div class="ci-icon ci-wa-bg">📱</div><div><div class="ci-label">WhatsApp</div><div class="ci-value"><a href="https://wa.me/2348146554533" class="ci-link" target="_blank">Message us on WhatsApp →</a></div></div></div>
+      <div class="ci"><div class="ci-icon ci-tg-bg">✈️</div><div><div class="ci-label">Telegram Group</div><div class="ci-value"><a href="https://t.me/exammaster2026" class="ci-link" target="_blank">Join our Telegram →</a></div></div></div>
+      <div class="ci"><div class="ci-icon ci-gold-bg">⚡</div><div><div class="ci-label">Powered By</div><div class="ci-value" style="color:var(--gold);">Chaksman Group</div></div></div>
+    </div>
+    <div class="contact-card">
+      <h3>Send a Message ✉️</h3>
+      <p class="intro" style="margin-bottom:20px;">Quick question? Send it directly and we'll get back to you.</p>
+      <div id="contactForm">
+        <div class="fg"><label>Your Name</label><input type="text" placeholder="e.g. Amina Ibrahim"></div>
+        <div class="fg"><label>Email Address</label><input type="email" placeholder="yourname@email.com"></div>
+        <div class="fg"><label>Subject</label>
+          <select>
+            <option value="">Select a topic</option>
+            <option>Registration Help</option>
+            <option>Payment Issue</option>
+            <option>Quiz Access Problem</option>
+            <option>Leaderboard Query</option>
+            <option>Partnership / Referral</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg"><label>Message</label><textarea placeholder="Describe your issue or question..."></textarea></div>
+        <button class="send-btn" onclick="sendForm()">⚡ SEND MESSAGE</button>
+      </div>
+      <div class="form-success" id="formSuccess">✅ Message received! We'll respond within 24 hours.<br>⚡ ExamMaster Team</div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <div class="sec-label" style="text-align:center;">Common Questions</div>
+  <div class="sec-title" style="text-align:center;margin-bottom:28px;">FAQ <span>⚡</span></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>How do I join ExamMaster?</span><span class="faq-tog">▼</span></div><div class="faq-a">Click the "Join — ₦1,600" button anywhere on the page. Enter your name and email in the secure payment popup, then complete your Paystack payment. You'll get immediate access.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Which subjects are covered?</span><span class="faq-tog">▼</span></div><div class="faq-a">ExamMaster currently covers PHY102 (General Physics II), CHM102 (General Chemistry II), and MTH102 (General Mathematics II) — the three core 100-level science courses.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>How does the scoring work?</span><span class="faq-tog">▼</span></div><div class="faq-a">Every correct answer earns you 10+ points. Each day has 25+ questions (max 100 points). Over 5 days, the maximum total is 3500+ points. Leaderboard rankings are based on cumulative score.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>When does the leaderboard reset?</span><span class="faq-tog">▼</span></div><div class="faq-a">The weekly leaderboard resets every Monday at 00:00. Season rankings accumulate across all weeks. Weekly top performers receive recognition; season champions are announced at season end.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>What are the rewards?</span><span class="faq-tog">▼</span></div><div class="faq-a">Top performers each week receive special rewards and public recognition. Season champions receive premium prizes. Referral bonuses are also available for students who bring in classmates.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Can I retry a quiz if I scored badly?</span><span class="faq-tog">▼</span></div><div class="faq-a">Every battle is a "One-Shot" event. Your first-attempt score is final and is the only one sent to the Live Leaderboard. However, the season is a marathon, not a sprint! If you miss a mark, the next daily quiz is your opportunity to recover points and climb back to the top. </div></div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="fc-title">READY TO<br><span>DOMINATE?</span></div>
+  <p style="font-size:14px;color:var(--muted);max-width:480px;margin:0 auto 32px;line-height:1.7;">Stop watching. Stop waiting. Get in the arena. Your ranking starts the moment you join.</p>
+  <button class="btn-gold" onclick="openPayModal()" style="font-size:17px;padding:18px 44px;">🏆 JOIN THE BATTLE NOW →</button>
+  <br><br>
+  <p style="font-size:11px;color:var(--muted);font-family:'Oswald',sans-serif;letter-spacing:2px;margin-top:8px;">⚡ ONLY SERIOUS STUDENTS COMPETE. YOUR RANKING STARTS NOW.</p>
+</section>
+<div style="margin-top:10px;font-size:13px;color:#aaa;text-align:center;padding-bottom:10px;">
+  <span style="text-decoration:line-through;color:#777;">₦3,000</span>
+  <span style="color:#f5c518;font-weight:700;"> ₦1,600 Launch Price</span>
+</div>
+
+<!-- SOCIAL BAR -->
+<div class="social-bar">
+  <div class="social-label">Connect With Us</div>
+  <div class="social-links">
+    <a href="https://chat.whatsapp.com/KwilJRlV4dSIieyKkKAlGB" target="_blank" class="social-btn swa">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://t.me/exammaster2026" target="_blank" class="social-btn stg">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#0088cc"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Telegram
+    </a>
+    <a href="mailto:exammasterseries@gmail.com" class="social-btn sem">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#f5c518"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      Email Us
+    </a>
+  </div>
+  <div class="social-copy">© 2026 ExamMaster Series · Chaksman Group</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand"><span>Exam</span>Master ⚡</div>
+  <div style="font-family:'Oswald',sans-serif;font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:10px;text-transform:uppercase;">Learn Faster · Compete Harder · Rank Higher</div>
+  <div class="footer-terms">By joining ExamMaster, you accept our <a onclick="openModal('termsModal');return false;">Terms &amp; Conditions</a> and confirm your seat in the 102 Battle System. Powered by <strong style="color:var(--gold);">Chaksman Group</strong></div>
+  <div class="footer-bottom">© 2026 ExamMaster Series · All Rights Reserved</div>
+</footer>
+
+<script>
+// ─── CONFIG ──────────────────────────────────────────────────────────────────
+var PAYSTACK_PUBLIC_KEY = 'pk_test_9e67fa5c0a660d63f1b4047a80c2772ca1c00f76';
+var AMOUNT_KOBO = 160000; // ₦1,600 in kobo
+// ─────────────────────────────────────────────────────────────────────────────
+
+function openModal(id) {
+  document.getElementById(id).style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function openPayModal() {
+  document.getElementById('payName').value = '';
+  document.getElementById('payEmail').value = '';
+  document.getElementById('nameErr').style.display = 'none';
+  document.getElementById('emailErr').style.display = 'none';
+  document.getElementById('payNowBtn').disabled = false;
+  document.getElementById('payNowBtn').textContent = '🏆 PAY ₦1,600 — GET ACCESS';
+  openModal('payModal');
+}
+
+function launchPaystack(){
+  var name=document.getElementById('payName').value.trim();
+  var email=document.getElementById('payEmail').value.trim();
+  var valid=true;
+  document.getElementById('nameErr').style.display='none';
+  document.getElementById('emailErr').style.display='none';
+  if(!name){document.getElementById('nameErr').style.display='block';valid=false;}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('emailErr').style.display='block';valid=false;}
+  if(!valid)return;
+  document.getElementById('payNowBtn').disabled=true;
+  document.getElementById('payNowBtn').textContent='Opening Paystack…';
+  var handler=PaystackPop.setup({
+    key:PAYSTACK_PUBLIC_KEY,
+    email:email,
+    amount:AMOUNT_KOBO,
+    currency:'NGN',
+    ref:'EM-'+Date.now()+'-'+Math.floor(Math.random()*1000000),
+    metadata:{custom_fields:[
+      {display_name:'Full Name',variable_name:'full_name',value:name},
+      {display_name:'Product',variable_name:'product',value:'ExamMaster 102 Battle System'}
+    ]},
+    callback:function(response){
+      closeModal('payModal');
+      // Payment successful — open Tally form with reference pre-filled
+      openTallyModal(response.reference, name, email);
+    },
+    onClose:function(){
+      document.getElementById('payNowBtn').disabled=false;
+      document.getElementById('payNowBtn').textContent='🏆 PAY ₦1,600 — GET ACCESS';
+    }
+  });
+  handler.openIframe();
+}
+
+// Close modals when clicking the backdrop
+document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) closeModal(this.id);
+  });
+});
+
+function toggleFaq(el) {
+  var a = el.nextElementSibling;
+  var t = el.querySelector('.faq-tog');
+  var open = a.classList.toggle('open');
+  t.classList.toggle('open', open);
+}
+
+function sendForm() {
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+function openTallyModal(reference, name, email) {
+  // Display reference code
+  document.getElementById('payRefDisplay').textContent = reference;
+
+  // Build Tally form URL with pre-filled fields
+  // Replace YOUR_TALLY_FORM_ID with your actual Tally form ID
+  const tallyBase = 'https://tally.so/r/xX0O0v';
+  const params = new URLSearchParams({
+    'Paystack Reference Code': reference,
+    'Official Email Address': email,
+  });
+
+  document.getElementById('tallyFrame').src = tallyBase + '?' + params.toString();
+  openModal('tallyModal');
+}
+
+function toggleNav(){
+  document.getElementById('navMobile').classList.toggle('open');
+}
+// Close mobile nav when clicking outside
+document.addEventListener('click', function(e){
+  const nav = document.getElementById('navMobile');
+  const btn = document.getElementById('navHamburger');
+  if(nav && btn && !nav.contains(e.target) && !btn.contains(e.target)){
+    nav.classList.remove('open');
+  }
+});
+</script>
+<!-- TALLY REGISTRATION MODAL -->
+<div class="modal-overlay" id="tallyModal">
+  <div class="modal-box" style="max-width:560px;">
+    <div class="modal-title">Complete Your Registration 📋</div>
+    <div class="modal-sub">Payment confirmed · Fill your details below</div>
+    <div style="background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+      <span style="font-size:20px;">✅</span>
+      <div>
+        <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;color:#00ff88;letter-spacing:1px;">PAYMENT CONFIRMED</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">Reference: <span id="payRefDisplay" style="color:var(--gold);font-family:monospace;"></span></div>
+      </div>
+    </div>
+    <iframe id="tallyFrame"
+      src=""
+      width="100%"
+      height="500px"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+      style="border-radius:10px;background:#fff;">
+      Loading registration form...
+    </iframe>
+    <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:12px;font-family:'Oswald',sans-serif;letter-spacing:1px;">
+      ⚠️ Your Paystack Reference Code is your proof of payment. Keep it safe.
+    </p>
+  </div>
+</div>
+</body>
+</html>
