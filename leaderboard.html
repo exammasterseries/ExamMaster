@@ -517,7 +517,15 @@ function launchPaystack(){
     var iframe=document.querySelector('iframe[src*="paystack"]');
     if(iframe){iframe.style.height='100%';iframe.style.minHeight='600px';iframe.parentElement.style.overflowY='auto';iframe.parentElement.style.webkitOverflowScrolling='touch';}
   },800);
+// Fallback if internet drops during confirmation
+  setTimeout(function(){
+    var checking=document.querySelector('.paystack-embed-document');
+    if(checking){
+      alert('If your payment was successful but the page is stuck, please email exammasterseries@gmail.com with your bank alert reference to get access manually.');
+    }
+  },180000);
 }
+
 document.querySelectorAll('.modal-overlay').forEach(function(overlay){
   overlay.addEventListener('click',function(e){if(e.target===this)closeModal(this.id);});
 });
