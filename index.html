@@ -614,6 +614,28 @@ function launchPaystack(){
     }
   });
   handler.openIframe();
+setTimeout(function(){
+  var overlay = document.querySelector('.paystack-embed-document');
+  if(overlay){
+    overlay.style.overflowY = 'auto';
+    overlay.style.webkitOverflowScrolling = 'touch';
+    overlay.style.height = '100vh';
+    overlay.style.maxHeight = '100vh';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.right = '0';
+    overlay.style.bottom = '0';
+    overlay.style.zIndex = '999999';
+  }
+  var iframe = document.querySelector('iframe[src*="paystack"]');
+  if(iframe){
+    iframe.style.height = '100%';
+    iframe.style.minHeight = '600px';
+    iframe.parentElement.style.overflowY = 'auto';
+    iframe.parentElement.style.webkitOverflowScrolling = 'touch';
+  }
+}, 800);
 }
 
 /* ══ MODAL CLOSE ON OVERLAY CLICK ══ */
@@ -778,7 +800,8 @@ setTimeout(()=>{
 <!-- TALLY REGISTRATION MODAL -->
 <div class="modal-overlay" id="tallyModal">
   <div class="modal-box" style="max-width:560px;">
-    <div class="modal-title">Complete Your Registration 📋</div>
+    <button class="modal-close" onclick="closeModal('tallyModal')">✕</button>
+<div class="modal-title">Complete Your Registration 📋</div>
     <div class="modal-sub">Payment confirmed · Fill your details below</div>
     <div style="background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;">
       <span style="font-size:20px;">✅</span>
