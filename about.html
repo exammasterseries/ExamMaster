@@ -173,6 +173,8 @@ footer{padding:28px 24px;border-top:1px solid var(--border);text-align:center;}
   .nav-hamburger{display:flex;align-items:center;justify-content:center;}
   .nav-cta{font-size:11px;padding:7px 14px;letter-spacing:1px;}
 }
+  .paystack-embed-document{overflow-y:auto !important;-webkit-overflow-scrolling:touch !important;height:100vh !important;max-height:100vh !important;position:fixed !important;top:0 !important;left:0 !important;right:0 !important;bottom:0 !important;z-index:999999 !important;}
+.paystack-embed-document iframe{height:100% !important;min-height:600px !important;}
 </style>
 </head>
 <body>
@@ -453,8 +455,16 @@ function launchPaystack(){
     }
   });
   handler.openIframe();
+  });
+  setTimeout(function(){
+    var overlay=document.querySelector('.paystack-embed-document');
+    if(overlay){overlay.style.overflowY='auto';overlay.style.webkitOverflowScrolling='touch';overlay.style.height='100vh';overlay.style.maxHeight='100vh';overlay.style.position='fixed';overlay.style.top='0';overlay.style.left='0';overlay.style.right='0';overlay.style.bottom='0';overlay.style.zIndex='999999';}
+    var iframe=document.querySelector('iframe[src*="paystack"]');
+    if(iframe){iframe.style.height='100%';iframe.style.minHeight='600px';iframe.parentElement.style.overflowY='auto';iframe.parentElement.style.webkitOverflowScrolling='touch';}
+  },800);
 }
 
+// Close modals when clicking the backdrop
 // Close modals when clicking the backdrop
 document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
   overlay.addEventListener('click', function(e) {
@@ -504,6 +514,7 @@ document.addEventListener('click', function(e){
 <!-- TALLY REGISTRATION MODAL -->
 <div class="modal-overlay" id="tallyModal">
   <div class="modal-box" style="max-width:560px;">
+    <button class="modal-close" onclick="closeModal('tallyModal')">✕</button>
     <div class="modal-title">Complete Your Registration 📋</div>
     <div class="modal-sub">Payment confirmed · Fill your details below</div>
     <div style="background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;">
