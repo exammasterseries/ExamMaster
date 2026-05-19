@@ -650,11 +650,16 @@ setTimeout(function(){
     iframe.parentElement.style.overflowY = 'auto';
     iframe.parentElement.style.webkitOverflowScrolling = 'touch';
   }
-}, 800);
+},800);
+  setTimeout(function(){
+    var checking=document.querySelector('.paystack-embed-document');
+    if(checking){
+      alert('If your payment was successful but the page is stuck, please email exammasterseries@gmail.com with your bank alert reference to get access manually.');
+    }
+  },180000);
 }
-
 /* ══ MODAL CLOSE ON OVERLAY CLICK ══ */
-document.querySelectorAll('.modal-overlay').forEach(function(o){
+   document.querySelectorAll('.modal-overlay').forEach(function(o){
   o.addEventListener('click',function(e){if(e.target===this)closeModal(this.id);});
 });
 
