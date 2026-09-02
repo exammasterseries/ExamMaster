@@ -1,0 +1,15 @@
+/* ══════════════════════════════════════
+   EXAMMASTER SHARED CONFIG — LIVE
+   Include on every page, in this order:
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   <script src="config.js"></script>
+══════════════════════════════════════ */
+
+// ── PAYSTACK ──
+const PAYSTACK_PUBLIC_KEY = 'pk_live_96a73d4ce52ad58e28d737667e55384fee60cb1f';
+const AMOUNT_KOBO = 160000; // ₦1,600
+
+// ── SUPABASE (live project: exammaster) ──
+const SUPABASE_URL = 'https://meibzamnnjcslaxpextd.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_V0KZb3lwqxiZ05KVn0xdHg_hM8Tro-6';
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
