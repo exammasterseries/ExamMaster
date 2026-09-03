@@ -1,0 +1,25 @@
+{
+  "name": "ExamMaster — 102 Battle System",
+  "short_name": "ExamMaster",
+  "description": "Master PHY102, CHM102 & MTH102 through daily timed battles and a live leaderboard.",
+  "start_url": "home.html",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#06060a",
+  "theme_color": "#f5c518",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/exammasterseries/exammaster/main/image-5.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "https://raw.githubusercontent.com/exammasterseries/exammaster/main/image-5.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
