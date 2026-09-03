@@ -816,6 +816,9 @@ setTimeout(()=>{
   fab.classList.add('pulse-tooltip');
   setTimeout(()=>fab.classList.remove('pulse-tooltip'),4500);
 },3000);
+   if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(err => console.error('SW registration failed:', err));
+}
 </script>
 
 <!-- TALLY REGISTRATION MODAL -->
