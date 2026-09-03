@@ -518,6 +518,9 @@ document.addEventListener('click', function(e){
     nav.classList.remove('open');
   }
 });
+  if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(err => console.error('SW registration failed:', err));
+}
 </script>
 <!-- TALLY REGISTRATION MODAL -->
 <div class="modal-overlay" id="tallyModal">
